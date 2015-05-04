@@ -1,2 +1,0 @@
-# Projekt-A-
-Projekt A
