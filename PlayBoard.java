@@ -19,23 +19,23 @@ public class PlayBoard {
 		for (int i = 0; i < playBoard.length; i++) {
 			for (int j = 0; j < playBoard[i].length; j++) {
 				//Erstellen der Feldbezeichner in ersten Reihe und ersten Spalte
-				if (i == 0 && (j >= 2 && j <= 6)) {				
+				if (i == 0 && (j >= 2 && j <= (width-2))) {				
 					FieldUnit signField = new FieldUnit (i, j, " " + (j-1) + " ", false);
 					playBoard[i][j] = signField;
 				}
-				else if (j == 0 && (i >= 2 && i <= 6)) {
+				else if (j == 0 && (i >= 2 && i <= (width -2))) {
 					FieldUnit signField = new FieldUnit (i, j, " " + (i-1) + " ", false);
 					playBoard[i][j] = signField;
 				}
 				
 				//Erstellen der unspielbaren Felder
-				else if ((i <= 1 && (j <= 1 || j >= 6)) || (i >= 7 && (j <= 1 || j >= 6))) {
+				else if ((i <= 1 && (j <= 1 || j >= (width-1))) || (i >= (height-1) && (j <= 1 || j >= (width-1)))) {
 					FieldUnit notPlayableField = new FieldUnit (i, j, " - ", false);
 					playBoard[i][j] = notPlayableField;
 				} 
 				
-				//Erstellen der versteckten Felder
-				else if (((i == 3 || i == 5) && (j >= 3 && j <= 5)) ||(i == 4 && (j == 3 || j == 5))) {
+				//Erstellen der versteckten Felder für alle Spielfeldgrößen
+				else if (((i == 3 || i == (width-3)) && (j >= 3 && j <= (width-3))) ||(i == (width -4) && i >2 && (j == 3 || j == (width-3)))) {
 					FieldUnit hiddenField = new FieldUnit (i, j, " x ", true);
 					playBoard[i][j] = hiddenField;
 				}
@@ -67,8 +67,8 @@ public class PlayBoard {
 	
 	void generateCoins(int coins) {
 		while (coins > 0) {
-			int randomX = random.nextInt(5) + 2; //+2, weil nur in den Feldern 1-5 Einheiten starten
-			int randomY = random.nextInt(5) + 2; //+2, weil nur in den Feldern 1-5 Einheiten starten
+			int randomX = random.nextInt(width-3) + 2; //+2, weil nur in den Feldern 1-5 Einheiten starten
+			int randomY = random.nextInt(width-3) + 2; //+2, weil nur in den Feldern 1-5 Einheiten starten
 			if (playBoard[randomX][randomY].token.equals(" x ")) {
 				playBoard[randomX][randomY].token = " C ";
 				coins--;
@@ -78,8 +78,8 @@ public class PlayBoard {
 	
 	void generateRedToken (int star, int square, int triangle, int circle) {
 		while (star > 0) {
-			int randomX = random.nextInt(5) + 2; //+2, weil nur in den Feldern 1-5 Einheiten starten
-			int randomY = random.nextInt(5) + 2; //+2, weil nur in den Feldern 1-5 Einheiten starten
+			int randomX = random.nextInt(width-3) + 2; //+2, weil nur in den Feldern 1-5 Einheiten starten
+			int randomY = random.nextInt(width-3) + 2; //+2, weil nur in den Feldern 1-5 Einheiten starten
 			if (playBoard[randomX][randomY].token.equals(" x ")) {
 				playBoard[randomX][randomY].token = " *r";
 				star--;
@@ -87,17 +87,17 @@ public class PlayBoard {
 		}
 		
 		while (square > 0) {
-			int randomX = random.nextInt(5) + 2; //+2, weil nur in den Feldern 1-5 Einheiten starten
-			int randomY = random.nextInt(5) + 2; //+2, weil nur in den Feldern 1-5 Einheiten starten
+			int randomX = random.nextInt(width-3) + 2; //+2, weil nur in den Feldern 1-5 Einheiten starten
+			int randomY = random.nextInt(width-3) + 2; //+2, weil nur in den Feldern 1-5 Einheiten starten
 			if (playBoard[randomX][randomY].token.equals(" x ")) {
 				playBoard[randomX][randomY].token = " Sr";
-			} 
-			square--;
+				square--;
+			} 	
 		}
 		
 		while (triangle > 0) {
-			int randomX = random.nextInt(5) + 2; //+2, weil nur in den Feldern 1-5 Einheiten starten
-			int randomY = random.nextInt(5) + 2; //+2, weil nur in den Feldern 1-5 Einheiten starten
+			int randomX = random.nextInt(width-3) + 2; //+2, weil nur in den Feldern 1-5 Einheiten starten
+			int randomY = random.nextInt(width-3) + 2; //+2, weil nur in den Feldern 1-5 Einheiten starten
 			if (playBoard[randomX][randomY].token.equals(" x ")) {
 				playBoard[randomX][randomY].token = " Tr";
 				triangle--;
@@ -105,8 +105,8 @@ public class PlayBoard {
 		}
 		
 		while (circle > 0) {
-			int randomX = random.nextInt(5) + 2; //+2, weil nur in den Feldern 1-5 Einheiten starten
-			int randomY = random.nextInt(5) + 2; //+2, weil nur in den Feldern 1-5 Einheiten starten
+			int randomX = random.nextInt(width-3) + 2; //+2, weil nur in den Feldern 1-5 Einheiten starten
+			int randomY = random.nextInt(width-3) + 2; //+2, weil nur in den Feldern 1-5 Einheiten starten
 			if (playBoard[randomX][randomY].token.equals(" x ")) {
 				playBoard[randomX][randomY].token = " Or";
 				circle--;
@@ -116,8 +116,8 @@ public class PlayBoard {
 	
 	void generateBlueToken (int star, int square, int triangle, int circle) {
 		while (star > 0) {
-			int randomX = random.nextInt(5) + 2; //+2, weil nur in den Feldern 1-5 Einheiten starten
-			int randomY = random.nextInt(5) + 2; //+2, weil nur in den Feldern 1-5 Einheiten starten
+			int randomX = random.nextInt(width-3) + 2; //+2, weil nur in den Feldern 1-5 Einheiten starten
+			int randomY = random.nextInt(width-3) + 2; //+2, weil nur in den Feldern 1-5 Einheiten starten
 			if (playBoard[randomX][randomY].token.equals(" x ")) {
 				playBoard[randomX][randomY].token = " *b";
 				star--;
@@ -125,8 +125,8 @@ public class PlayBoard {
 		}
 		
 		while (square > 0) {
-			int randomX = random.nextInt(5) + 2; //+2, weil nur in den Feldern 1-5 Einheiten starten
-			int randomY = random.nextInt(5) + 2; //+2, weil nur in den Feldern 1-5 Einheiten starten
+			int randomX = random.nextInt(width-3) + 2; //+2, weil nur in den Feldern 1-5 Einheiten starten
+			int randomY = random.nextInt(width-3) + 2; //+2, weil nur in den Feldern 1-5 Einheiten starten
 			if (playBoard[randomX][randomY].token.equals(" x ")) {
 				playBoard[randomX][randomY].token = " Sb";
 				square--;
@@ -135,8 +135,8 @@ public class PlayBoard {
 		}
 		
 		while (triangle > 0) {
-			int randomX = random.nextInt(5) + 2; //+2, weil nur in den Feldern 1-5 Einheiten starten
-			int randomY = random.nextInt(5) + 2; //+2, weil nur in den Feldern 1-5 Einheiten starten
+			int randomX = random.nextInt(width-3) + 2; //+2, weil nur in den Feldern 1-5 Einheiten starten
+			int randomY = random.nextInt(width-3) + 2; //+2, weil nur in den Feldern 1-5 Einheiten starten
 			if (playBoard[randomX][randomY].token.equals(" x ")) {
 				playBoard[randomX][randomY].token = " Tb";
 				triangle--;
@@ -144,8 +144,8 @@ public class PlayBoard {
 		}
 		
 		while (circle > 0) {
-			int randomX = random.nextInt(5) + 2; //+2, weil nur in den Feldern 1-5 Einheiten starten
-			int randomY = random.nextInt(5) + 2; //+2, weil nur in den Feldern 1-5 Einheiten starten
+			int randomX = random.nextInt(width-3) + 2; //+2, weil nur in den Feldern 1-5 Einheiten starten
+			int randomY = random.nextInt(width-3) + 2; //+2, weil nur in den Feldern 1-5 Einheiten starten
 			if (playBoard[randomX][randomY].token.equals(" x ")) {
 				playBoard[randomX][randomY].token = " Ob";
 				circle--;
