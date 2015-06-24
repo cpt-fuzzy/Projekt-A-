@@ -1,17 +1,18 @@
 public class FieldUnit {
 	
-	byte x;
-	byte y;
-	boolean partOfPlayboard;				
-	boolean hasTokenOnIt;					//Zeigt an ob ein Spielstein auf dem FieldUnit ist
-	boolean willHideToken;
+	public int x;
+	public int y;
+	public String token;
+	public boolean willHideToken;
 	
-	FieldUnit(byte x, byte y, boolean partOfPlayboard, boolean hasTokenOnIt, boolean willHideToken) {
-		
-		this.partOfPlayboard = partOfPlayboard;
-		this.hasTokenOnIt = hasTokenOnIt;
+	FieldUnit(int x, int y, String token, boolean willHideToken) {
+		this.x = x;
+		this.y = y;
+		this.token = token;
 		this.willHideToken = willHideToken;
-		
 	}
 	
+	public String toString () {
+		return token;
+	}
 }
