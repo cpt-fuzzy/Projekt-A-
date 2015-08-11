@@ -1,0 +1,94 @@
+
+public abstract class Token {
+	private int points;
+	private boolean isVisible;
+	private boolean inGame;
+	private byte x;
+	private byte y;
+	
+	
+	
+	Token(int points,boolean isVisible ){
+		this.points = points;
+		this.isVisible = isVisible;
+		inGame = true;
+	}
+	public void setPoints (int newPoints) {
+		newPoints = points;
+	}
+	
+	public int getPoints (){
+		return points;
+	}
+	
+	protected abstract boolean moveAllowed (byte x, byte y);
+	
+	public void moveTokenTowards (byte x, byte y) {
+		if (moveAllowed(x,y) && inGame == true){
+			this.x = x;
+			this.y = y;
+			if (this.x < 0 || this.y <0 || this.x > playboard.base + 2 ||  this.y > playboard.base + 2  ) {
+				inGame = false;
+				//TODO: increaseScore of player whose  this
+			}
+		}
+		else{
+			System.out.print("Move not allowed");
+		}
+	}
+	
+}
+
+public class NeutralToken extends Token {
+	NeutralToken(int points,boolean isVisible ) {
+		super(points, isVisible);
+	}
+	
+	protected boolean moveAllowed (byte x, byte y) {
+		{
+			if (playboard.emptyFieldInDirection(x,y)) 
+				return true;
+			//TODO: else if(Token mit koordinate this.x+x, this.y+y )
+		}
+		
+	}
+}
+
+public abstract class ShapedToken extends Token {
+	Player affinity;
+	
+	ShapedToken(int points, boolean isVisible, Player affinity){
+		super(points ,isVisible);
+		this.affinity= affinity;
+	}
+	
+	protected abstract boolean moveAllowed (byte x, byte y);
+  }
+  
+public class SquareToken extends ShapedToken {
+
+	public SquareToken () {
+		super();
+	}
+}
+
+public class TriangleToken extends ShapedToken {
+	
+	public TriangleToken () {
+		super();
+	}
+}
+
+public class CircleToken extends ShapedToken {
+	
+	public CircleToken() {
+		super();
+	}
+}
+
+public class StarToken extends ShapedToken {
+
+	public StarToken() {
+		super();
+	}
+}
