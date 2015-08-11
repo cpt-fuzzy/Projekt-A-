@@ -1,58 +1,97 @@
 
 public abstract class Token {
-	private int points;
-	private boolean isVisible;
-	private boolean inGame;
-	private byte x;
-	private byte y;
+	protected byte x;
+	protected byte y;
+	protected int points;
+	protected boolean isVisible;
+	protected boolean inGame;
 	
 	
-	
-	Token(int points,boolean isVisible ){
+	Token(byte x, byte y,int points,boolean isVisible)
+	{
+		this.x = x;
+		this.y = y;
 		this.points = points;
 		this.isVisible = isVisible;
 		inGame = true;
 	}
-	public void setPoints (int newPoints) {
-		newPoints = points;
+	
+	public byte getX() {
+		return x;
+	}
+
+	public void setX(byte x) {
+		this.x = x;
+	}
+
+	public byte getY() {
+		return y;
+	}
+
+	public void setY(byte y) {
+		this.y = y;
+	}
+
+	boolean getVisibility() {
+		return isVisible;
 	}
 	
-	public int getPoints (){
-		return points;
+	boolean getInGame() {
+		return inGame;
 	}
 	
-	protected abstract boolean moveAllowed (byte x, byte y);
+	protected abstract boolean moveAllowed (byte vectorX, byte vectorY);
 	
-	public void moveTokenTowards (byte x, byte y) {
-		if (moveAllowed(x,y) && inGame == true){
-			this.x = x;
-			this.y = y;
-			if (this.x < 0 || this.y <0 || this.x > playboard.base + 2 ||  this.y > playboard.base + 2  ) {
+	public void moveTokenTowards (byte vectorX, byte vectorY) {
+		if (moveAllowed(vectorX,vectorY) && inGame == true){
+			this.x += vectorX;
+			this.y += vectorY;
+		}
+		else if 
+			if (this.x < 0 || this.y <0 || this.x > playboard.getBase() + 2 ||  this.y > playboard.getBase() + 2  ) {
 				inGame = false;
-				//TODO: increaseScore of player whose  this
-			}
+				//TODO: increaseScore of player whose shape was before
+			
 		}
 		else{
 			System.out.print("Move not allowed");
 		}
 	}
-	
-}
+
 
 public class NeutralToken extends Token {
-	NeutralToken(int points,boolean isVisible ) {
-		super(points, isVisible);
+	NeutralToken(byte x, byte y,int points,boolean isVisible) {
+		super(x,y, points, isVisible);
 	}
 	
-	protected boolean moveAllowed (byte x, byte y) {
+	protected boolean moveAllowed (byte vectorX, byte vectorY) {
 		{
-			if (playboard.emptyFieldInDirection(x,y)) 
+			if (playboard.emptyFieldFrom(x, y, vectorX, vectorY))
 				return true;
-			//TODO: else if(Token mit koordinate this.x+x, this.y+y )
+			
+			else if	(vectorX == 1 && x == playboard.getbase()) 
+				if(playboard.whichKindOfTokenOn(x+vectorX,y+vectorY) instanceof NeutralToken) 
+					return false;
+			
+			else if	(vectorX == -1 && x == 1);
+				if(playboard.whichKindOfTokenOn(x+vectorX, y+vectorY) instanceof NeutralToken) 
+					return false;
+				
+			else if (vectorY == 1 && y = playboard.getbase());
+				if(playboard.whichKindOfTokenOn(x+vectorX, y+vectorY) instanceof NeutralToken) 
+					return false;
+				
+			else if (vectorY == -1&& y == 1);
+				if(playboard.whichKindOfTokenOn(x+vectorX, y+vectorY) instanceof NeutralToken) 
+					return false;
+				
+
+			else return true;
 		}
 		
 	}
 }
+
 
 public abstract class ShapedToken extends Token {
 	Player affinity;
