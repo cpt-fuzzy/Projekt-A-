@@ -92,42 +92,169 @@ public class NeutralToken extends Token {
 	}
 }
 
-
 public abstract class ShapedToken extends Token {
-	Player affinity;
+	protected Player affinity;
 	
-	ShapedToken(int points, boolean isVisible, Player affinity){
-		super(points ,isVisible);
+	ShapedToken(byte x, byte y, int points, boolean isVisible, Player affinity){
+		super(x,y,points,isVisible);
 		this.affinity= affinity;
 	}
 	
-	protected abstract boolean moveAllowed (byte x, byte y);
-  }
-  
-public class SquareToken extends ShapedToken {
+	protected boolean moveAllowed (byte vectorX, byte vectorY) {
+		
+	/*	if (playboard.emptyFieldFrom(x, y, vectorX, vectorY))
+			return true;
+		
+		else if	(vectorX == 1 && x == playboard.getBase()) 
+			if	(!(playboard.whichKindOfTokenOn(x+vectorX,y+vectorY) instanceof this.getClass()))
+				return false;
+		
+		else if	(vectorX == -1 && x == 1);
+			if	(!(playboard.whichKindOfTokenOn(x+vectorX, y+vectorY) instanceof this.getClass()))
+				return false;
+			
+		else if (vectorY == 1 && y == playboard.getBase());
+			if	(!(playboard.whichKindOfTokenOn(x+vectorX, y+vectorY) instanceof this.getClass()))
+				return false;
+			
+		else if (vectorY == -1&& y == 1);
+			if	(!(playboard.whichKindOfTokenOn(x+vectorX, y+vectorY) instanceof this.getClass()))
+				return false;
+			
 
-	public SquareToken () {
-		super();
+		else return true;
+	*/
 	}
 }
+
 
 public class TriangleToken extends ShapedToken {
 	
-	public TriangleToken () {
-		super();
+	public TriangleToken (byte x, byte y, int points, boolean isVisible, Player affinity) {
+		super( x,  y,  points,  isVisible,  affinity);
+	}
+	protected boolean moveAllowed (byte vectorX, byte vectorY) {
+		
+		if	 (playboard.emptyFieldFrom(x, y, vectorX, vectorY))
+			return true;
+		
+		else if	(vectorX == 1 && x == playboard.getBase()+1) 
+			if	(!(playboard.whichKindOfTokenOn(x-vectorX,y-vectorY) instanceof TriangleToken))
+				return false;
+		
+		else if	(vectorX == -1 && x == 0);
+			if	(!(playboard.whichKindOfTokenOn(x-vectorX, y-vectorY) instanceof TriangleToken))
+				return false;
+			
+		else if (vectorY == 1 && y == playboard.getBase()+1);
+			if	(!(playboard.whichKindOfTokenOn(x-vectorX, y-vectorY) instanceof TriangleToken)) 
+				return false;
+			
+		else if (vectorY == -1&& y == 0);
+			if	(!(playboard.whichKindOfTokenOn(x-vectorX, y-vectorY) instanceof TriangleToken))
+				return false;
+			
+	
+		else return true;
+	
 	}
 }
+
 
 public class CircleToken extends ShapedToken {
 	
-	public CircleToken() {
-		super();
+	public CircleToken(byte x, byte y, int points, boolean isVisible, Player affinity) {
+		super( x,  y,  points,  isVisible,  affinity);
+	}
+	protected boolean moveAllowed (byte vectorX, byte vectorY) {
+			
+		if	(playboard.emptyFieldFrom(x, y, vectorX, vectorY))
+			return true;
+		
+		else if	(vectorX == 1 && x == playboard.getBase()+1) 
+			if	(!(playboard.whichKindOfTokenOn(x-vectorX,y-vectorY) instanceof CircleToken))
+				return false;
+		
+		else if	(vectorX == -1 && x == 0);
+			if	(!(playboard.whichKindOfTokenOn(x-vectorX, y-vectorY) instanceof CircleToken))
+				return false;
+			
+		else if (vectorY == 1 && y == playboard.getBase()+1);
+			if	(!(playboard.whichKindOfTokenOn(x-vectorX, y-vectorY) instanceof CircleToken)) 
+				return false;
+			
+		else if (vectorY == -1&& y == 0);
+			if	(!(playboard.whichKindOfTokenOn(x-vectorX, y-vectorY) instanceof CircleToken))
+				return false;
+			
+
+		else return true;
+	
 	}
 }
 
+
+public class SquareToken extends ShapedToken {
+
+	public SquareToken (byte x, byte y, int points, boolean isVisible, Player affinity) {
+		super( x,  y,  points,  isVisible,  affinity);
+	}
+	protected boolean moveAllowed (byte vectorX, byte vectorY) {
+			
+		if 	(playboard.emptyFieldFrom(x, y, vectorX, vectorY))
+			return true;
+		
+		else if	(vectorX == 1 && x == playboard.getBase()+1) 
+			if	(!(playboard.whichKindOfTokenOn(x-vectorX,y-vectorY) instanceof SquareToken))
+				return false;
+		
+		else if	(vectorX == -1 && x == 0);
+			if	(!(playboard.whichKindOfTokenOn(x-vectorX, y-vectorY) instanceof SquareToken))
+				return false;
+			
+		else if (vectorY == 1 && y == playboard.getBase()+1);
+			if	(!(playboard.whichKindOfTokenOn(x-vectorX, y-vectorY) instanceof SquareToken)) 
+				return false;
+			
+		else if (vectorY == -1&& y == 0);
+			if	(!(playboard.whichKindOfTokenOn(x-vectorX, y-vectorY) instanceof SquareToken))
+				return false;
+			
+
+		else return true;
+	
+	}
+}
+
+
 public class StarToken extends ShapedToken {
 
-	public StarToken() {
-		super();
+	public StarToken(byte x, byte y, int points, boolean isVisible, Player affinity) {
+		super( x,  y,  points,  isVisible,  affinity);
+	}
+	protected boolean moveAllowed (byte vectorX, byte vectorY) {
+			
+		if	(playboard.emptyFieldFrom(x, y, vectorX, vectorY))
+			return true;
+		
+		else if	(vectorX == 1 && x == playboard.getbase()+1) 
+			if	(!(playboard.whichKindOfTokenOn(x-vectorX,y-vectorY)  instanceof ShapedToken))
+				return false;
+		
+		else if	(vectorX == -1 && x == 0);
+			if	(!(playboard.whichKindOfTokenOn(x-vectorX, y-vectorY) instanceof ShapedToken))
+				return false;
+			
+		else if (vectorY == 1 && y == playboard.getbase()+1);
+			if	(!(playboard.whichKindOfTokenOn(x-vectorX, y-vectorY) instanceof ShapedToken)) 
+				return false;
+			
+		else if (vectorY == -1&& y == 0);
+			if	(!(playboard.whichKindOfTokenOn(x-vectorX, y-vectorY) instanceof ShapedToken)) 
+				return false;
+			
+
+		else return false;
+	
 	}
 }
