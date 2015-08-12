@@ -57,7 +57,7 @@ public abstract class Token {
 			System.out.print("Move not allowed");
 		}
 	}
-
+}
 
 public class NeutralToken extends Token {
 	NeutralToken(byte x, byte y,int points,boolean isVisible) {
