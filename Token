@@ -139,19 +139,19 @@ public class TriangleToken extends ShapedToken {
 			return true;
 		
 		else if	(vectorX == 1 && x == playboard.getBase()+1) 
-			if	(!(playboard.whichKindOfTokenOn(x-vectorX,y-vectorY) instanceof TriangleToken))
+			if	(!(playboard.whichKindOfTokenOn(x-vectorX,y-vectorY) instanceof TriangleToken)|| this.affinity.equals(TokenObjektDavor.affinity))
 				return false;
 		
 		else if	(vectorX == -1 && x == 0);
-			if	(!(playboard.whichKindOfTokenOn(x-vectorX, y-vectorY) instanceof TriangleToken))
+			if	(!(playboard.whichKindOfTokenOn(x-vectorX, y-vectorY) instanceof TriangleToken)|| this.affinity.equals(TokenObjektDavor.affinity))
 				return false;
 			
 		else if (vectorY == 1 && y == playboard.getBase()+1);
-			if	(!(playboard.whichKindOfTokenOn(x-vectorX, y-vectorY) instanceof TriangleToken)) 
+			if	(!(playboard.whichKindOfTokenOn(x-vectorX, y-vectorY) instanceof TriangleToken)|| this.affinity.equals(TokenObjektDavor.affinity)) 
 				return false;
 			
 		else if (vectorY == -1&& y == 0);
-			if	(!(playboard.whichKindOfTokenOn(x-vectorX, y-vectorY) instanceof TriangleToken))
+			if	(!(playboard.whichKindOfTokenOn(x-vectorX, y-vectorY) instanceof TriangleToken)|| this.affinity.equals(TokenObjektDavor.affinity))
 				return false;
 			
 	
@@ -172,19 +172,19 @@ public class CircleToken extends ShapedToken {
 			return true;
 		
 		else if	(vectorX == 1 && x == playboard.getBase()+1) 
-			if	(!(playboard.whichKindOfTokenOn(x-vectorX,y-vectorY) instanceof CircleToken))
+			if	(!(playboard.whichKindOfTokenOn(x-vectorX,y-vectorY) instanceof CircleToken)|| this.affinity.equals(TokenObjektDavor.affinity))
 				return false;
 		
 		else if	(vectorX == -1 && x == 0);
-			if	(!(playboard.whichKindOfTokenOn(x-vectorX, y-vectorY) instanceof CircleToken))
+			if	(!(playboard.whichKindOfTokenOn(x-vectorX, y-vectorY) instanceof CircleToken)|| this.affinity.equals(TokenObjektDavor.affinity))
 				return false;
 			
 		else if (vectorY == 1 && y == playboard.getBase()+1);
-			if	(!(playboard.whichKindOfTokenOn(x-vectorX, y-vectorY) instanceof CircleToken)) 
+			if	(!(playboard.whichKindOfTokenOn(x-vectorX, y-vectorY) instanceof CircleToken)|| this.affinity.equals(TokenObjektDavor.affinity)) 
 				return false;
 			
 		else if (vectorY == -1&& y == 0);
-			if	(!(playboard.whichKindOfTokenOn(x-vectorX, y-vectorY) instanceof CircleToken))
+			if	(!(playboard.whichKindOfTokenOn(x-vectorX, y-vectorY) instanceof CircleToken)|| this.affinity.equals(TokenObjektDavor.affinity))
 				return false;
 			
 
@@ -205,19 +205,19 @@ public class SquareToken extends ShapedToken {
 			return true;
 		
 		else if	(vectorX == 1 && x == playboard.getBase()+1) 
-			if	(!(playboard.whichKindOfTokenOn(x-vectorX,y-vectorY) instanceof SquareToken))
+			if	(!(playboard.whichKindOfTokenOn(x-vectorX,y-vectorY) instanceof SquareToken)|| this.affinity.equals(TokenObjektDavor.affinity))
 				return false;
 		
 		else if	(vectorX == -1 && x == 0);
-			if	(!(playboard.whichKindOfTokenOn(x-vectorX, y-vectorY) instanceof SquareToken))
+			if	(!(playboard.whichKindOfTokenOn(x-vectorX, y-vectorY) instanceof SquareToken)|| this.affinity.equals(TokenObjektDavor.affinity))
 				return false;
 			
 		else if (vectorY == 1 && y == playboard.getBase()+1);
-			if	(!(playboard.whichKindOfTokenOn(x-vectorX, y-vectorY) instanceof SquareToken)) 
+			if	(!(playboard.whichKindOfTokenOn(x-vectorX, y-vectorY) instanceof SquareToken)|| this.affinity.equals(TokenObjektDavor.affinity)) 
 				return false;
 			
 		else if (vectorY == -1&& y == 0);
-			if	(!(playboard.whichKindOfTokenOn(x-vectorX, y-vectorY) instanceof SquareToken))
+			if	(!(playboard.whichKindOfTokenOn(x-vectorX, y-vectorY) instanceof SquareToken)|| this.affinity.equals(TokenObjektDavor.affinity))
 				return false;
 			
 
@@ -238,19 +238,19 @@ public class StarToken extends ShapedToken {
 			return true;
 		
 		else if	(vectorX == 1 && x == playboard.getbase()+1) 
-			if	(!(playboard.whichKindOfTokenOn(x-vectorX,y-vectorY)  instanceof ShapedToken))
+			if	(!(playboard.whichKindOfTokenOn(x-vectorX,y-vectorY)  instanceof ShapedToken)|| this.affinity.equals(TokenObjektDavor.affinity))
 				return false;
 		
 		else if	(vectorX == -1 && x == 0);
-			if	(!(playboard.whichKindOfTokenOn(x-vectorX, y-vectorY) instanceof ShapedToken))
+			if	(!(playboard.whichKindOfTokenOn(x-vectorX, y-vectorY) instanceof ShapedToken)|| this.affinity.equals(TokenObjektDavor.affinity))
 				return false;
 			
 		else if (vectorY == 1 && y == playboard.getbase()+1);
-			if	(!(playboard.whichKindOfTokenOn(x-vectorX, y-vectorY) instanceof ShapedToken)) 
+			if	(!(playboard.whichKindOfTokenOn(x-vectorX, y-vectorY) instanceof ShapedToken)|| this.affinity.equals(TokenObejktDavor.affinity)) 
 				return false;
 			
 		else if (vectorY == -1&& y == 0);
-			if	(!(playboard.whichKindOfTokenOn(x-vectorX, y-vectorY) instanceof ShapedToken)) 
+			if	(!(playboard.whichKindOfTokenOn(x-vectorX, y-vectorY) instanceof ShapedToken)|| this.affinity.equals(TokenObjektDavor.affinity)) 
 				return false;
 			
 
