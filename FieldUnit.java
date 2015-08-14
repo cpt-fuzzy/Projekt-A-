@@ -1,18 +1,20 @@
 public class FieldUnit {
 	
-	public int x;
-	public int y;
-	public String token;
-	public boolean willHideToken;
+	public byte x;
+	public byte y;
+	public boolean hasTokenOnIt;
 	
-	FieldUnit(int x, int y, String token, boolean willHideToken) {
+	FieldUnit(byte x, byte y, String token, boolean hasTokenOnIt) {
 		this.x = x;
 		this.y = y;
-		this.token = token;
-		this.willHideToken = willHideToken;
+		this.hasTokenOnIt = hasTokenOnIt;
 	}
 	
-	public String toString () {
-		return token;
+	public byte getX () {
+		return x;
+	}
+	
+	public byte getY () {
+		return y;
 	}
 }
