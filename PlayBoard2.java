@@ -1,67 +1,66 @@
-public class Playboard {
+public class PlayBoard {
 
 	byte base;
 	FieldUnit playBoard[][];
-	byte tokenCounters[];
+	byte tokenCounters[]; // Die tokenCounters Lösung ist aus meiine Sicht etwas suboptimal, vielleicht sollte die Idee eines Counters für die Token mit affinität besser in der Player Klasse stehen...
 	Token tokens[][];
 
 	public Playboard(byte base) {
 		this.base = base;
 		tokenCounters = new byte[11];
 		playBoard = new FieldUnit[base+2][base+2];
-		tokens = new Token[][] {{new NeutralToken((byte)0,(byte)0,1,false),new NeutralToken((byte)0,(byte)0,1,false),new NeutralToken((byte)0,(byte)0,1,false),new NeutralToken((byte)0,(byte)0,1,false),new NeutralToken((byte)0,(byte)0,1,false),new NeutralToken((byte)0,(byte)0,1,false),new NeutralToken((byte)0,(byte)0,1,false),new NeutralToken((byte)0,(byte)0,1,false),new NeutralToken((byte)0,(byte)0,1,false),new NeutralToken((byte)0,(byte)0,1,false),new NeutralToken((byte)0,(byte)0,1,false),new NeutralToken((byte)0,(byte)0,1,false),new NeutralToken((byte)0,(byte)0,1,false),new NeutralToken((byte)0,(byte)0,1,false),new NeutralToken((byte)0,(byte)0,1,false),new NeutralToken((byte)0,(byte)0,1,false)},{new CircleToken((byte)0,(byte)0,1,false,player1),new CircleToken((byte)0,(byte)0,1,false,player1),new SquareToken((byte)0,(byte)0,1,false,player1),new SquareToken((byte)0,(byte)0,1,false,player1),new TriangleToken((byte)0,(byte)0,1,false,player1),new TriangleToken((byte)0,(byte)0,1,false,player1), new StarToken((byte)0,(byte)0,1,false,player1)), new StarToken((byte)0,(byte)0,1,false,player1)},{new CircleToken((byte)0,(byte)0,1,false,player2),new CircleToken((byte)0,(byte)0,1,false,player2),new SquareToken((byte)0,(byte)0,1,false,player2),new SquareToken((byte)0,(byte)0,1,false,player2),new TriangleToken((byte)0,(byte)0,1,false,player2),new TriangleToken((byte)0,(byte)0,1,false,player2), new StarToken((byte)0,(byte)0,1,false,player2)}};	//The length of my Dick
 		
 	}
 	public void generateToken() {
-		for(int i = 0;i<=16;i++)
+		for(int i = 0;i<=11;i++)
 		{
 			tokens[0][i] = new NeutralToken(((byte)0,(byte)0,1,false)); 
 		}
-		for(int i = 0;i <=8 ;i++)
+		for(int i = 0;i <=7 ;i++)
 		{
 			switch(i) {
 			case 0: case 1:{
-				tokens[1][i] = 	new CircleToken((byte)0,(byte)0,3,player1);
+				tokens[1][i] = 	new CircleToken((byte)0,(byte)0,3,game.player1);
 				break;
 			}
 			case 2: case 3:{
-				tokens[1][i] = 	new SquareToken((byte)0,(byte)0,3,player1);
+				tokens[1][i] = 	new SquareToken((byte)0,(byte)0,3,game.player1);
 				break;
 			}
 			case 4: case 5:{
-				tokens[1][i] = 	new CircleToken((byte)0,(byte)0,3,player1);
+				tokens[1][i] = 	new CircleToken((byte)0,(byte)0,3,game.player1);
 				break;
 			}
-			case 6: case 7:{
+			case 6:{
 				tokens[1][i] = 	new StarToken((byte)0,(byte)0,3,player1);
 				break;
 			}
 			}
 		}
-		for(int i  = 0;i <=8 ;i++)
+		for(int i  = 0;i <=7 ;i++)
 		{
 			switch(i) {
 			case 0: case 1:{
-				tokens[2][i] = 	new CircleToken((byte)0,(byte)0,3,player2);
+				tokens[2][i] = 	new CircleToken((byte)0,(byte)0,3,game.player2);
 				break;
 			}
 			case 2: case 3:{
-				tokens[2][i] = 	new SquareToken((byte)0,(byte)0,3,player2);
+				tokens[2][i] = 	new SquareToken((byte)0,(byte)0,3,game.player2);
 				break;
 			}
 			case 4: case 5:{
-				tokens[2][i] = 	new CircleToken((byte)0,(byte)0,3,player2);
+				tokens[2][i] = 	new CircleToken((byte)0,(byte)0,3,game.player2);
 				break;
 			}
-			case 6: case 7:{
-				tokens[2][i] = 	new StarToken((byte)0,(byte)0,3,player2);
+			case 6:{
+				tokens[2][i] = 	new StarToken((byte)0,(byte)0,3,game.player2);
 				break;
 			}
 		}
 	}
 	
 	public void generateField() {
-		for (int i = 0; i< playBoard; i++) 
+		for (int i = 0; i< playBoard.length; i++) 
 		{
 			for(int j = 0;i<playBoard[i].length; j++)
 			{
@@ -70,7 +69,7 @@ public class Playboard {
 					FieldUnit notPlayableField = new FieldUnit(i,j,false);
 					playBoard[i][j] = notPlayableField;
 				}
-				else if (Bedingung des Florian)
+				else if  (((i == 2 || i == (playBoard.length - 3)) && (j >= 2 && j <= (playBoard.length - 3))) || (i == (playBoard.length - 4) && i > 1 && (j == 2 || j == (playBoard.length - 3))))
 				{
 					FieldUnit hiddenField = new FieldUnit(i,j,true);
 					playBoard[i][j] = hiddenField;
