@@ -1,8 +1,8 @@
 Zeile 1: Klassenname: PlayBoard
-Zeile 12: scheint nicht zu funktionieren so, keine farblichen Markierungen, und du füllst das Token 2d-Array ja inb generateToken
+Zeile 12: scheint nicht zu funktionieren so, keine farblichen Markierungen, und du füllst das Token 2d-Array ja inb generateToken -> Zeile 12 sollte da nur scherzhaft drin seine, weils eh kein guter Stil ist eine Zeile so lang zu schreiben
 	  warum 16 neutralToken? Am Anfang gibt es nur 11 Coins
-	  außerdem: es gibt nur ein StarToken pro Spieler
-Zeile 16: müsste dann bis < 11 gehen
+	  außerdem: es gibt nur ein StarToken pro Spieler  -> stimmt ich hatte an der Stelle nicht in die Doku geschaut 
+Zeile 16: müsste dann bis < 11 gehen 
 Zeile 20: müsste bis < 7 gehen, da es nur 7 einheiten pro Spieler gibt
 Zeile 32: du meinst wohl TriangleToken
 Zeile 35: nur 1 StarToken
@@ -10,11 +10,11 @@ Zeile 35: nur 1 StarToken
 das gleiche zu den Einheiten von Spieler 2
 
 allgemein: bist du dir sicher, dass man das byte casten muss? ne 0 ist ja ne byte zahl...oder meckert er dann wegen possible lossy conversion from int to byte?
-	   die werte player1 und player2 wird er so glaub ich nicht zuordnen können, da ja nie die variable player definiert wurde in der klasse
+	   die werte player1 und player2 wird er so glaub ich nicht zuordnen können, da ja nie die variable player definiert wurde in der klasse -> wenn man die Zeile byte = 5, ist das kein Problem, aber wenn man über konstruktoren/ Klassen den Wert ständig übergibt weiß man nie, ich geh so nur auf Nummer sicher
 
 Zeile 64: playBoard.length; 
 
-Zeile 70/75/80: die boolean variable willHideToken fehlt jetzt in der aktuellen Version von FieldUnit, sollte dann noch wieder rein
+Zeile 70/75/80: die boolean variable willHideToken fehlt jetzt in der aktuellen Version von FieldUnit, sollte dann noch wieder rein -> hatte mir an der Stelle überlegt, da ob ein Feld ein Spielstein versteckt rein abhängig von der Koordinate ist, eine Bedingung in der Ausgabe zu stellen.
 
 Zeile 73: Bedingung: (((i == 3 || i == (width-3)) && (j >= 3 && j <= (width-3))) ||(i == (width -4) && i >2 && (j == 3 || j == (width-3)))) war meine Bedingung, aber da gab es ja ein extrafeld
 	  neu: (((i == 2 || i == (playBoard.length - 3)) && (j >= 2 && j <= (playBoard.length - 3))) || (i == (playBoard.length - 4) && i > 1 && (j == 2 || j == (playBoard.length - 3))))
