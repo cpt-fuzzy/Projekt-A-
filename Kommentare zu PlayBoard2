@@ -9,8 +9,8 @@ Zeile 35: nur 1 StarToken
 
 das gleiche zu den Einheiten von Spieler 2
 
-allgemein: bist du dir sicher, dass man das byte casten muss? ne 0 ist ja ne byte zahl...oder meckert er dann wegen possible lossy conversion from int to byte?
-	   die werte player1 und player2 wird er so glaub ich nicht zuordnen können, da ja nie die variable player definiert wurde in der klasse -> wenn man die Zeile byte = 5, ist das kein Problem, aber wenn man über konstruktoren/ Klassen den Wert ständig übergibt weiß man nie, ich geh so nur auf Nummer sicher
+allgemein: bist du dir sicher, dass man das byte casten muss? ne 0 ist ja ne byte zahl...oder meckert er dann wegen possible lossy conversion from int to byte? -> wenn man die Zeile byte = 5, ist das kein Problem, aber wenn man über konstruktoren/ Klassen den Wert ständig übergibt weiß man nie, ich geh so nur auf Nummer sicher
+	   die werte player1 und player2 wird er so glaub ich nicht zuordnen können, da ja nie die variable player definiert wurde in der klasse -> Die Player Objekte werden in der Game Klasse erstellt, was wo erstellt wird scheint vielleicht aus Sicht von jemand anderen etwas willkürlich, ich versuche aber damit das Realgame so nah wie möglich zu beschreiben
 
 Zeile 64: playBoard.length; 
 
@@ -19,4 +19,4 @@ Zeile 70/75/80: die boolean variable willHideToken fehlt jetzt in der aktuellen 
 Zeile 73: Bedingung: (((i == 3 || i == (width-3)) && (j >= 3 && j <= (width-3))) ||(i == (width -4) && i >2 && (j == 3 || j == (width-3)))) war meine Bedingung, aber da gab es ja ein extrafeld
 	  neu: (((i == 2 || i == (playBoard.length - 3)) && (j >= 2 && j <= (playBoard.length - 3))) || (i == (playBoard.length - 4) && i > 1 && (j == 2 || j == (playBoard.length - 3))))
 
-Die Sachen zu denen ich keine Kommentare gemacht habe, sind zum Großteil Tippfehler
+Die Sachen zu denen ich keine Kommentare gemacht habe, sind zum großteil Tippfehler oder ich habs vergessen.
