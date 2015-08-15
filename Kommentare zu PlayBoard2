@@ -18,3 +18,5 @@ Zeile 70/75/80: die boolean variable willHideToken fehlt jetzt in der aktuellen 
 
 Zeile 73: Bedingung: (((i == 3 || i == (width-3)) && (j >= 3 && j <= (width-3))) ||(i == (width -4) && i >2 && (j == 3 || j == (width-3)))) war meine Bedingung, aber da gab es ja ein extrafeld
 	  neu: (((i == 2 || i == (playBoard.length - 3)) && (j >= 2 && j <= (playBoard.length - 3))) || (i == (playBoard.length - 4) && i > 1 && (j == 2 || j == (playBoard.length - 3))))
+
+Die Sachen zu denen ich keine Kommentare gemacht habe, sind zum Großteil Tippfehler
