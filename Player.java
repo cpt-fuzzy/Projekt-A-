@@ -4,8 +4,8 @@ public class Player {
 	
 	private String name;
 	private int score;
-	private byte vectorx;
-	private byte vectory;
+	private byte vectorX;
+	private byte vectorY;
 	protected boolean onTurn;
 	Scanner scanner = new Scanner(System.in);
 	
@@ -17,9 +17,9 @@ public class Player {
 	
 	public void initializeMove(Token tokens[x][y]) {
 		System.out.println(getName() + " ist am Zug: Token eingeben: ");
-		vectorx = scanner.next();
-		vectory = scanner.next();
-		token.moveTokenTowards(vectorx, vectory);
+		vectorX = scanner.next();
+		vectorY = scanner.next();
+		token.moveTokenTowards(vectorX, vectorY);
 	}
 	
 	public void endTurn() {
