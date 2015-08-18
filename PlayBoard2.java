@@ -102,3 +102,5 @@ public class PlayBoard {
 		return tokens[x][y];
 	}
 }
+
+In dieser Version von playBoard werden die Token erstmal erstellt, die randomisierung geschieht in den FieldUnits über eine die Referenz an einen der Token in tokens[][]
