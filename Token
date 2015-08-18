@@ -1,11 +1,12 @@
+package game;
 
 public abstract class Token {
+
 	protected byte x;
 	protected byte y;
 	protected int points;
 	protected boolean isVisible;
 	protected boolean inGame;
-	
 	
 	Token(byte x, byte y,int points,boolean isVisible)
 	{
@@ -15,6 +16,27 @@ public abstract class Token {
 		this.isVisible = isVisible;
 		inGame = true;
 	}
+	
+	protected abstract boolean moveAllowed (byte vectorX, byte vectorY);
+	protected abstract Token getAffinity();
+	
+	public void moveTokenTowards (byte vectorX, byte vectorY) {
+		if (moveAllowed(vectorX,vectorY) && inGame == true){
+			this.x += vectorX;
+			this.y += vectorY;
+			if (this.x < 0 || this.y <0 || this.x > Game.playBoard.getBase() + 2 ||  this.y > Game.playBoard.getBase() + 2  ) {
+				inGame = false;
+				if (Game.playBoard.getTokenOn(x-vectorX, y-vectorY)instanceof ShapedToken)
+						Game.playBoard.getTokenOn(x-vectorX, y-vectorY).getAffinity().increaseScore(points);
+			}
+				
+			
+		}
+		else{
+			System.out.print("Move not allowed");
+		}
+	}
+
 	
 	public byte getX() {
 		return x;
@@ -40,24 +62,9 @@ public abstract class Token {
 		return inGame;
 	}
 	
-	protected abstract boolean moveAllowed (byte vectorX, byte vectorY);
-	
-	public void moveTokenTowards (byte vectorX, byte vectorY) {
-		if (moveAllowed(vectorX,vectorY) && inGame == true){
-			this.x += vectorX;
-			this.y += vectorY;
-			if (this.x < 0 || this.y <0 || this.x > playboard.getBase() + 2 ||  this.y > playboard.getBase() + 2  ) {
-				inGame = false;
-				playboard.getTokenOn(x-vectorX, y-vectorY).affinity.increaseScore(points);
-			}
-				
-			
-		}
-		else{
-			System.out.print("Move not allowed");
-		}
-	}
-}
+}	
+
+package game;
 
 public class NeutralToken extends Token {
 	NeutralToken(byte x, byte y,int points,boolean isVisible) {
@@ -65,24 +72,25 @@ public class NeutralToken extends Token {
 	}
 	
 	protected boolean moveAllowed (byte vectorX, byte vectorY) {
-		{
-		if (playboard.emptyFieldFrom(x, y, vectorX, vectorY))
+		if (Game.playBoard.emptyFieldFrom(x, y, vectorX, vectorY))
 			return true;
 		
-		else if	((vectorX == 1 && x == playboard.getBase()+1)||
-	 	  (vectorX == -1 && x == 0)||
-		   (vectorY == 1 && y == playboard.getBase()+1)||
-		    (vectorY == -1&& y == 0)) 
-			if(!(playboard.getTokenOn(x-vectorX,y-vectorY) instanceof NeutralToken)||
-			this.affinity.equals(playboard.getTokenOn(x-vectorX, y-vectorY).affinity))
-			return false;
+		else if	((vectorX == 1 && x == Game.playBoard.getBase()+1)||
+			 	  (vectorX == -1 && x == 0)||
+				   (vectorY == 1 && y == Game.playBoard.getBase()+1)||
+				    (vectorY == -1&& y == 0)) 
+			if(!(Game.playBoard.getTokenOn(x-vectorX,y-vectorY) instanceof NeutralToken))
+				return false;
+			else 
+				return true;
 			
 
 		else return true;
 		}
 		
 	}
-}
+
+package game;
 
 public abstract class ShapedToken extends Token {
 	protected Player affinity;
@@ -92,24 +100,26 @@ public abstract class ShapedToken extends Token {
 		this.affinity= affinity;
 	}
 	
-	protected boolean moveAllowed (byte vectorX, byte vectorY) {
+	protected abstract boolean moveAllowed(byte vectorX, byte vectorY);
 		
 	/*	if (playboard.emptyFieldFrom(x, y, vectorX, vectorY))
 			return true;
 		
-		else if	(vectorX == 1 && x == playboard.getBase()+1||
+		else if	(vectorX == 1 && x == playField.getBase()+1||
 			 (vectorX == -1 && x == 0 )||
-			  (vectorY == 1 && y == playboard.getBase()+1)||
+			  (vectorY == 1 && y == playField.getBase()+1)||
 			   (vectorY == -1&& y == 0)) 
-			if (!(playboard.getTokenOn(x-vectorX,y-vectorY) instanceof this.getClass())||
-				this.affinity.equals(playboard.getTokenOn(x-vectorX, y-vectorY).affinity)
+			if (!(playField.getTokenOn(x-vectorX,y-vectorY) instanceof this.getClass())||
+				this.affinity.equals(playField.getTokenOn(x-vectorX, y-vectorY).affinity)
 			 	return false;
 
 		else return true;
 	*/
+	public Player getAffinity() {
+		return affinity;
 	}
 }
-
+package game;
 
 public class TriangleToken extends ShapedToken {
 	
@@ -118,22 +128,25 @@ public class TriangleToken extends ShapedToken {
 	}
 	protected boolean moveAllowed (byte vectorX, byte vectorY) {
 		
-		if	 (playboard.emptyFieldFrom(x, y, vectorX, vectorY))
+		if	 (Game.playBoard.emptyFieldFrom(x, y, vectorX, vectorY))
 			return true;
 		
-		else if	((vectorX == 1 && x == playboard.getBase()+1)||
+		else if	((vectorX == 1 && x == Game.playBoard.getBase()+1)||
 		 	  (vectorX == -1 && x == 0)||
-			   (vectorY == 1 && y == playboard.getBase()+1)||
+			   (vectorY == 1 && y == Game.playBoard.getBase()+1)||
 			    (vectorY == -1&& y == 0)) 
-			if(!(playboard.getTokenOn(x-vectorX,y-vectorY) instanceof TriangleToken)||
-				this.affinity.equals(playboard.getTokenOn(x-vectorX, y-vectorY).affinity))
+			if(!(Game.playBoard.getTokenOn(x-vectorX,y-vectorY) instanceof TriangleToken)||
+				this.affinity.equals(Game.playBoard.getTokenOn(x-vectorX, y-vectorY).getAffinity()))
 				return false;
+			else return true;
 	
 		else return true;
 	
 	}
 }
 
+
+package game;
 
 public class CircleToken extends ShapedToken {
 	
@@ -142,16 +155,17 @@ public class CircleToken extends ShapedToken {
 	}
 	protected boolean moveAllowed (byte vectorX, byte vectorY) {
 			
-		if	(playboard.emptyFieldFrom(x, y, vectorX, vectorY))
+		if	(Game.playBoard.emptyFieldFrom(x, y, vectorX, vectorY))
 			return true;
 		
-		else if	((vectorX == 1 && x == playboard.getBase()+1)||
+		else if	((vectorX == 1 && x == Game.playBoard.getBase()+1)||
 		 	  (vectorX == -1 && x == 0)||
-			   (vectorY == 1 && y == playboard.getBase()+1)||
+			   (vectorY == 1 && y == Game.playBoard.getBase()+1)||
 			    (vectorY == -1&& y == 0)) 
-			if(!(playboard.getTokenOn(x-vectorX,y-vectorY) instanceof CircleToken)||
-				this.affinity.equals(playboard.getTokenOn(x-vectorX, y-vectorY).affinity))
+			if(!(Game.playBoard.getTokenOn(x-vectorX,y-vectorY) instanceof CircleToken)||
+				this.affinity.equals(Game.playBoard.getTokenOn(x-vectorX, y-vectorY).getAffinity()))
 				return false;
+			else return true;
 			
 
 		else return true;
@@ -159,6 +173,9 @@ public class CircleToken extends ShapedToken {
 	}
 }
 
+
+
+package game;
 
 public class SquareToken extends ShapedToken {
 
@@ -167,16 +184,17 @@ public class SquareToken extends ShapedToken {
 	}
 	protected boolean moveAllowed (byte vectorX, byte vectorY) {
 			
-		if 	(playboard.emptyFieldFrom(x, y, vectorX, vectorY))
+		if 	(Game.playBoard.emptyFieldFrom(x, y, vectorX, vectorY))
 			return true;
 		
-	else if	((vectorX == 1 && x == playboard.getBase()+1)||
+		else if	((vectorX == 1 && x == Game.playBoard.getBase()+1)||
 		 	  (vectorX == -1 && x == 0)||
-			   (vectorY == 1 && y == playboard.getBase()+1)||
+			   (vectorY == 1 && y == Game.playBoard.getBase()+1)||
 			    (vectorY == -1&& y == 0)) 
-			if(!(playboard.getTokenOn(x-vectorX,y-vectorY) instanceof SquareToken)||
-				this.affinity.equals(playboard.getTokenOn(x-vectorX, y-vectorY).affinity))
+			if(!(Game.playBoard.getTokenOn(x-vectorX,y-vectorY) instanceof SquareToken)||
+				this.affinity.equals(Game.playBoard.getTokenOn(x-vectorX, y-vectorY).getAffinity()))
 				return false;
+			else return true;
 			
 
 		else return true;
@@ -185,6 +203,9 @@ public class SquareToken extends ShapedToken {
 }
 
 
+
+package game;
+
 public class StarToken extends ShapedToken {
 
 	public StarToken(byte x, byte y, int points, boolean isVisible, Player affinity) {
@@ -192,16 +213,17 @@ public class StarToken extends ShapedToken {
 	}
 	protected boolean moveAllowed (byte vectorX, byte vectorY) {
 			
-		if	(playboard.emptyFieldFrom(x, y, vectorX, vectorY))
+		if	(Game.playBoard.emptyFieldFrom(x, y, vectorX, vectorY))
 			return true;
 		
-		else if	((vectorX == 1 && x == playboard.getBase()+1)||
+		else if	((vectorX == 1 && x == Game.playBoard.getBase()+1)||
 		 	  (vectorX == -1 && x == 0)||
-			   (vectorY == 1 && y == playboard.getBase()+1)||
+			   (vectorY == 1 && y == Game.playBoard.getBase()+1)||
 			    (vectorY == -1&& y == 0)) 
-			if(!(playboard.getTokenOn(x-vectorX,y-vectorY) instanceof ShapedToken)||
-				this.affinity.equals(playboard.getTokenOn(x-vectorX, y-vectorY).affinity))
+			if(!(Game.playBoard.getTokenOn(x-vectorX,y-vectorY) instanceof ShapedToken)||
+				this.affinity.equals(Game.playBoard.getTokenOn(x-vectorX, y-vectorY).getAffinity()))
 				return false;
+			else return true;
 			
 
 		else return false;
