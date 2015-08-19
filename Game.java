@@ -1,15 +1,14 @@
-import java.util.Random;					
+import java.util.Random();					
 
 public class Game {
 	
+	static Token tokens[][];
+	static PlayBoard playBoard;
+	tatic Player player[]; 
 	protected int turnCount;
-	protected Player whoseTurn;				// whoseTurn ist eigentlich unnötig, wenn man den spielablauf in der run() methode korrekt ausgeführt wird, klar das stand im UML drin, kann aber gestrichen werden
 	private boolean gameOn = true;				
-	Playboard playboard = new Playboard();			// müsste statisch sein und in run initialisiert werden
-	Player player1 = new Player("Player1", 0);		// wenn man für die Player ein Array verwendet kann man 
-	Player player2 = new Player("Player2", 0);		//hier un da ein paar Zeilen Code in der Initialisierung der Token sparen
 	Random rn = new Random();				//
-								//würde hier auch noch die statischen Objekte playBoard und Token[] deklarieren und in run() initialisieren wie 
+							//würde hier auch noch die statischen Objekte playBoard und Token[] deklarieren und in run() initialisieren wie 
 	/*public void determineTurnStart() {
 		int coin = rn.nextInt(2);
 		
@@ -23,19 +22,54 @@ public class Game {
 	}*/
 	
 	public static void run() {
-	playboard.generateField();
-	playboard.generateToken();
+	PlayBoard playBoard = new PlayBoard((byte)5);
+	Player player[] = {new Player("Neutral"),new Player("Player1"), new Player("Player2")};
+	playBoard.generateField();
+	generateToken();
 	
-	while(gameOn == true) {					// wenn man in der schleife eine break Bedingung einsetzt wenn einer der Spieler keine Token hat kann man sich gameOn sparen und damit Speicher 
-	player1.initializeMove();
-	player1.initializeMove();
-	player1.endTurn();
+	while(gameOn == true) { 
+	player[1].initializeMove();
+	player[1].initializeMove();
+	player[1].endTurn();
 	turnCount ++;
-	player2.initializeMove();
-	player2.initializeMove();
-	player2.endTurn();
+	player[2].initializeMove();
+	player[2].initializeMove();
+	player[2].endTurn();
 	turnCount ++;
+		}
 	}
+	public static void generateToken() {
+		for(int z = 0;z<=2;z++){
+			if(z==0){
+				for(int i = 0;i<=11;i++)
+				{
+					tokens[0][i] = new NeutralToken(1,false, player[z]); 
+				}
+			}
+			else {
+				for(int i = 0;i <=7 ;i++)
+			{
+					switch(i) {
+						case 0: case 1:{
+							tokens[z][i] = 	new CircleToken(3,false, player[z]);
+							break;
+						}
+						case 2: case 3:{
+							tokens[z][i] = 	new SquareToken(3,false, player[z]);
+							break;
+						}
+						case 4: case 5:{
+							tokens[z][i] = 	new Triangle(3,false, player[z]);
+							break;
+						}
+						case 6:{
+							tokens[z][i] = 	new StarToken(3,false, player[z]);
+							break;
+						}
+					}
+				}
+			}
+		}
 	}
 }
 	
