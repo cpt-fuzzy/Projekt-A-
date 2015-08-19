@@ -4,8 +4,6 @@ public class Player {
 	
 	private String name;
 	private int score;
-	private byte vectorX;
-	private byte vectorY;
 	protected boolean onTurn;
 	Scanner scanner = new Scanner(System.in);
 	
@@ -15,14 +13,17 @@ public class Player {
 		onTurn = false;
 	}
 	
-	public void initializeMove(Token tokens[x][y]) {
-		System.out.println(getName() + " ist am Zug: Token eingeben: ");
-		//Tim meinte wohl, dass hier erst ausgewählt wird, welches Token bewegt wird, finde ich auch gut so
-		//dann müsste erstmal wieder x und y sein und danach muss noch die Richtung abgefragt werden
-		//also dort dann vectorX und vectorY
-		vectorX = scanner.next();
-		vectorY = scanner.next();
-		token.moveTokenTowards(vectorX, vectorY);
+	public void initializeMove(byte vectorX, byte vectorY,byte x, byte y) {
+		while(vectorX != 0 || vectorY != 0)
+		{
+			System.out.println(name + " ist am Zug: Token eingeben: ");
+		vectorX = scanner.nextByte();
+		vectorY = scanner.nextByte();
+		x	= scanner.nextByte();
+		y	= scanner.nextByte();
+		
+		Game.tokens[x][y].moveTokenTowards(vectorX, vectorY); // müsste noch als eine schleife umgeschrieben werden, an alle TOken die betroffen sind
+		}
 	}
 	
 	public void endTurn() {
