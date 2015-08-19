@@ -4,7 +4,7 @@ public class PlayBoard {
 
 	public byte base;
 	public FieldUnit playField[][];
-	public Token tokens[][];
+
 
 	public PlayBoard(byte base) {
 		this.base = base;
@@ -103,4 +103,4 @@ public class PlayBoard {
 	}
 }
 
-In dieser Version von playBoard werden die Token erstmal erstellt, die randomisierung geschieht in den FieldUnits über eine die Referenz an einen der Token in tokens[][]
+
