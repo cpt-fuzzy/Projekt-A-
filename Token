@@ -22,6 +22,10 @@ public abstract class Token {
 	
 	public void moveTokenTowards (byte vectorX, byte vectorY) {
 		if (moveAllowed(vectorX,vectorY) && inGame == true){
+			//muss die Bewegung in den beiden Achsen nicht in aufgeteilt werden? Also erst die eine,
+			//dann prüfen, ob das erlaubt ist und dann die andere? und das auch in variabler Reihenfolge
+			//der Spieler bewegt ja nicht immer zuerst die Reihe und dann die Spalte, sondern auch mal andersrum
+			//und wenn man jetzt beide verschiebungen als eine sieht, dann werden ja kills oder so was übersehen
 			this.x += vectorX;
 			this.y += vectorY;
 			if (this.x < 0 || this.y <0 || this.x > Game.playBoard.getBase() + 2 ||  this.y > Game.playBoard.getBase() + 2  ) {
@@ -42,7 +46,11 @@ public abstract class Token {
 		return x;
 	}
 
-	public void setXandY {
+	public byte getY() {
+		return y;
+	}
+	
+	public void setXandY() {
 		while (true){
 			byte randomX = random.nextInt(5)+1;
 			byte randomY = random.nextInt(5)+1;
@@ -53,10 +61,6 @@ public abstract class Token {
 				break;
 			}
 		}
-	}
-
-	public byte getY() {
-		return y;
 	}
 
 	boolean getVisibility() {
