@@ -33,7 +33,7 @@ public class PlayBoard {
 							break;
 						}
 						case 4: case 5:{
-							tokens[z][i] = 	new CircleToken((byte)0,(byte)0,3,false, Game.player[z]);
+							tokens[z][i] = 	new TriangleToken((byte)0,(byte)0,3,false, Game.player[z]);
 							break;
 						}
 						case 6:{
