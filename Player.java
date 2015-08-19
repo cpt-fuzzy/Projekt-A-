@@ -17,6 +17,9 @@ public class Player {
 	
 	public void initializeMove(Token tokens[x][y]) {
 		System.out.println(getName() + " ist am Zug: Token eingeben: ");
+		//Tim meinte wohl, dass hier erst ausgewählt wird, welches Token bewegt wird, finde ich auch gut so
+		//dann müsste erstmal wieder x und y sein und danach muss noch die Richtung abgefragt werden
+		//also dort dann vectorX und vectorY
 		vectorX = scanner.next();
 		vectorY = scanner.next();
 		token.moveTokenTowards(vectorX, vectorY);
