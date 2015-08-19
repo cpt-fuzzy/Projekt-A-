@@ -28,12 +28,12 @@ public class Game {
 	generateToken();
 	
 	while(gameOn == true) { 
-	player[1].initializeMove();
-	player[1].initializeMove();
+	player[1].initializeMove(); //da fehlt ja das Token!?
+	player[1].initializeMove(); //da fehlt ja das Token!?
 	player[1].endTurn();
 	turnCount ++;
-	player[2].initializeMove();
-	player[2].initializeMove();
+	player[2].initializeMove(); //da fehlt ja das Token!?
+	player[2].initializeMove(); //da fehlt ja das Token!?
 	player[2].endTurn();
 	turnCount ++;
 		}
