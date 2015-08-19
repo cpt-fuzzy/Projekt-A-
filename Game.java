@@ -7,8 +7,8 @@ public class Game {
 	static Player player[]; 
 	protected int turnCount;
 	private boolean gameOn = true;				
-	Random rn = new Random();				//
-							//würde hier auch noch die statischen Objekte playBoard und Token[] deklarieren und in run() initialisieren wie 
+	Random rn = new Random();			
+						
 	/*public void determineTurnStart() {
 		int coin = rn.nextInt(2);
 		
@@ -28,12 +28,12 @@ public class Game {
 	generateToken();
 	
 	while(gameOn == true) { 
-	player[1].initializeMove(); //da fehlt ja das Token!?
-	player[1].initializeMove(); //da fehlt ja das Token!?
+	player[1].initializeMove((byte)0,(byte)0,(byte)0,(byte)0); 
+	player[1].initializeMove((byte)0,(byte)0,(byte)0,(byte)0); 
 	player[1].endTurn();
 	turnCount ++;
-	player[2].initializeMove(); //da fehlt ja das Token!?
-	player[2].initializeMove(); //da fehlt ja das Token!?
+	player[2].initializeMove((byte)0,(byte)0,(byte)0,(byte)0); 
+	player[2].initializeMove((byte)0,(byte)0,(byte)0,(byte)0); 
 	player[2].endTurn();
 	turnCount ++;
 		}
