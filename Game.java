@@ -28,12 +28,12 @@ public class Game {
 	generateToken();
 	
 	while(gameOn == true) { 
-	player[1].initializeMove((byte)0,(byte)0,(byte)0,(byte)0); 
-	player[1].initializeMove((byte)0,(byte)0,(byte)0,(byte)0); 
+	player[1].initializeMove(); 
+	player[1].initializeMove(); 
 	player[1].endTurn();
 	turnCount ++;
-	player[2].initializeMove((byte)0,(byte)0,(byte)0,(byte)0); 
-	player[2].initializeMove((byte)0,(byte)0,(byte)0,(byte)0); 
+	player[2].initializeMove(); 
+	player[2].initializeMove(); 
 	player[2].endTurn();
 	turnCount ++;
 		}
