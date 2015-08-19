@@ -4,7 +4,7 @@ public class Game {
 	
 	static Token tokens[][];
 	static PlayBoard playBoard;
-	tatic Player player[]; 
+	static Player player[]; 
 	protected int turnCount;
 	private boolean gameOn = true;				
 	Random rn = new Random();				//
