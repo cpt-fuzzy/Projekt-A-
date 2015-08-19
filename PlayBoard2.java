@@ -11,47 +11,7 @@ public class PlayBoard {
 //		tokenCounters = new byte[11];
 		playField = new FieldUnit[base+2][base+2];	
 	}
-	
-	public void generateToken() {
-		for(int z = 0;z<=2;z++){
-			if(z==0){
-				for(int i = 0;i<=11;i++)
-				{
-					tokens[0][i] = new NeutralToken(1,false);
-					tokens[0][i].setXandY(); 
-					//geht das so, dass dann für jedes Token x und y gesetzt werden?
-				}
-			}
-			else {
-				for(int i = 0;i <=7 ;i++)
-			{
-					switch(i) {
-						case 0: case 1:{
-							tokens[z][i] = 	new CircleToken(3,false, Game.player[z]);
-							tokens[z][i].setXandY();
-							break;
-						}
-						case 2: case 3:{
-							tokens[z][i] = 	new SquareToken(3,false, Game.player[z]);
-							tokens[z][i].setXandY();
-							break;
-						}
-						case 4: case 5:{
-							tokens[z][i] = 	new TriangleToken(3,false, Game.player[z]);
-							tokens[z][i].setXandY();
-							break;
-						}
-						case 6:{
-							tokens[z][i] = 	new StarToken(3,false, Game.player[z]);
-							tokens[z][i].setXandY();
-							break;
-						}
-					}
-				}
-			}
-		}
-	}
-	
+
 	public void generateField() {
 		for (int i = 0; i< playField.length; i++) 
 		{
