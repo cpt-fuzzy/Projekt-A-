@@ -8,10 +8,8 @@ public abstract class Token {
 	protected boolean isVisible;
 	protected boolean inGame;
 	
-	Token(byte x, byte y,int points,boolean isVisible)
+	Token(int points,boolean isVisible)
 	{
-		this.x = x;
-		this.y = y;
 		this.points = points;
 		this.isVisible = isVisible;
 		inGame = true;
