@@ -17,7 +17,7 @@ public class PlayBoard {
 			if(z==0){
 				for(int i = 0;i<=11;i++)
 				{
-					tokens[0][i] = new NeutralToken((byte)0,(byte)0,1,false); 
+					tokens[0][i] = new NeutralToken(1,false); 
 				}
 			}
 			else {
@@ -25,19 +25,19 @@ public class PlayBoard {
 			{
 					switch(i) {
 						case 0: case 1:{
-							tokens[z][i] = 	new CircleToken((byte)0,(byte)0,3,false, Game.player[z]);
+							tokens[z][i] = 	new CircleToken(3,false, Game.player[z]);
 							break;
 						}
 						case 2: case 3:{
-							tokens[z][i] = 	new SquareToken((byte)0,(byte)0,3,false, Game.player[z]);
+							tokens[z][i] = 	new SquareToken(3,false, Game.player[z]);
 							break;
 						}
 						case 4: case 5:{
-							tokens[z][i] = 	new TriangleToken((byte)0,(byte)0,3,false, Game.player[z]);
+							tokens[z][i] = 	new TriangleToken(3,false, Game.player[z]);
 							break;
 						}
 						case 6:{
-							tokens[z][i] = 	new StarToken((byte)0,(byte)0,3,false, Game.player[z]);
+							tokens[z][i] = 	new StarToken(3,false, Game.player[z]);
 							break;
 						}
 					}
