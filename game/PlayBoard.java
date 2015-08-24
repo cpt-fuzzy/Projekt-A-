@@ -1,5 +1,7 @@
 package game;
 
+import gui.SchiebeGameGUI;
+
 public class PlayBoard {
 
 	private byte base;
@@ -11,25 +13,25 @@ public class PlayBoard {
 		playField = new FieldUnit[base+2][base+2];	
 	}
 
-	public void generateField() {
+	public void generateField(SchiebeGameGUI schiebeGameGUI) {
 		for (byte i = (byte)0; i< playField.length; i++) 
 		{
 			for(byte j = (byte) 0;j<playField[i].length; j++)
 			{
 				if((i ==(byte) 0 || i == base+(byte)1)&&(j ==(byte) 0 || j == base+(byte)1))
 				{
-					FieldUnit notPlayableField = new FieldUnit(i, j, false);
+					FieldUnit notPlayableField = new FieldUnit(i, j, false, schiebeGameGUI);
 					playField[i][j] = notPlayableField;
 				}
 				else if ((i <= (byte)1 && i >= base )&&(j<= (byte)1 && i >= base)) 
 				{
-					FieldUnit mainField = new FieldUnit(i,j, true);
+					FieldUnit mainField = new FieldUnit(i,j, true, schiebeGameGUI);
 					playField[i][j] = mainField;
                                 }
 
 				else 
 				{
-					FieldUnit borderField = new FieldUnit (i,j,false);
+					FieldUnit borderField = new FieldUnit (i,j,false, schiebeGameGUI);
 					playField[i][j] = borderField;
 				}
 				System.out.println("go");
