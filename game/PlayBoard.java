@@ -14,7 +14,7 @@ public class PlayBoard {
 	public void generateField() {
 		for (byte i = (byte)0; i< playField.length; i++) 
 		{
-			for(byte j = (byte) 0;i<playField[i].length; j++)
+			for(byte j = (byte) 0;j<playField[i].length; j++)
 			{
 				if((i ==(byte) 0 || i == base+(byte)1)&&(j ==(byte) 0 || j == base+(byte)1))
 				{
