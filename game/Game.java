@@ -4,9 +4,10 @@ import java.util.Random;
 
 public class Game {
 	
-	static Token tokens[][];
-	static PlayBoard playBoard;
-	static Player player[]; 			
+	static Token tokens[][]	={{null,null,null,null,null,null,null,null,null,null, null},
+	{null,null,null,null,null,null,null},{null,null,null,null,null,null,null}}; 
+	static PlayBoard playBoard = new PlayBoard(5);;
+	static Player player[] = {new Player("Neutral"),new Player("Player1"), new Player("Player2")};  			
 	Random rn = new Random();			
 						
 	/*public void determineTurnStart() {
@@ -22,8 +23,6 @@ public class Game {
 	}*/
 	
 	public static void run() {
-	PlayBoard playBoard = new PlayBoard((byte)5);
-	Player player[] = {new Player("Neutral"),new Player("Player1"), new Player("Player2")};
 	playBoard.generateField();
 	generateToken();
 	
@@ -41,7 +40,7 @@ public class Game {
 	public static void generateToken() {
 		for(byte z = 0;z<=2;z++){
 			if(z==0){
-				for(byte i = 0;i<=11;i++)
+				for(byte i = 0;i < 11;i++)
 				{
 					tokens[0][i] = new NeutralToken(1,false); 
 				}
