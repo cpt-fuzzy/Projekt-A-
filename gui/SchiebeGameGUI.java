@@ -1,6 +1,7 @@
 package gui;
 
 import game.Token;
+import javax.swing.JButton;
 
 public class SchiebeGameGUI extends javax.swing.JFrame {
 
