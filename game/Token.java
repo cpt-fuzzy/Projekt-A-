@@ -1,5 +1,6 @@
 package game;
 import java.util.Random;
+import gui.SchiebeGameGUI;
 
 public abstract class Token {
 
@@ -46,14 +47,14 @@ public abstract class Token {
 		return y;
 	}
 	
-	public void setXandY() {
+	public void setXandY(SchiebeGameGUI schiebeGameGUI) {
 		while (true){
 			byte randomX = (byte) (random.nextInt(5)+1);
 			byte randomY = (byte) (random.nextInt(5)+1);
 			if (Game.playBoard.playField[randomX][randomY].hasTokenOnIt == false) {
 				x = randomX;
 				y = randomY;
-	//			gui.SchiebeGameGUI.setName(x,y,this);
+				schiebeGameGUI.setButton(x,y,this);
 				Game.playBoard.playField[x][y].hasTokenOnIt = true;
 				break;
 			}
