@@ -4,9 +4,9 @@ import gui.SchiebeGameGUI;
 
 public class FieldUnit {
 	
-	public byte x;
-	public byte y;
-	public boolean hasTokenOnIt;
+	private byte x;
+	private byte y;
+	private boolean hasTokenOnIt;
 	
 	FieldUnit(byte x, byte y, boolean hasTokenOnIt,SchiebeGameGUI schiebeGameGUI) {
 		this.x = x;
@@ -27,4 +27,8 @@ public class FieldUnit {
         {
             return hasTokenOnIt;
         }
+        public void setHasTokenOnIt(boolean hasTokenOnIt) 
+	{
+    		this.hasTokenOnIt = hasTokenOnIt;
+    	}
 }
