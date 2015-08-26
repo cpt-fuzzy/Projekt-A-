@@ -52,11 +52,11 @@ public abstract class Token {
 		while (true){
 			byte randomX = (byte) (random.nextInt(5)+1);
 			byte randomY = (byte) (random.nextInt(5)+1);
-			if (Game.playBoard.playField[randomX][randomY].hasTokenOnIt == false) {
+			if (Game.playBoard.playField[randomX][randomY].getHasTokenOnIt() == false) {
 				x = randomX;
 				y = randomY;
 				schiebeGameGUI.setButton(x,y,this);
-				Game.playBoard.playField[x][y].hasTokenOnIt = true;
+				Game.playBoard.playField[x][y].setHasTokenOnIt(true);
 				break;
 			}
 		}
