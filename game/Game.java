@@ -63,12 +63,16 @@ public class Game {
 	schiebeGameGUI.setVisible(true);
 	
 	while(true) { 
-	player[1].initializeMove(); 
-	player[1].initializeMove(); 
+	player[1].initializeMove(schiebeGameGUI); 
+	schiebeGameGUI.setVisible(true);
+	player[1].initializeMove(schiebeGameGUI); 
+	schiebeGameGUI.setVisible(true);
 	player[1].endTurn();
-
-	player[2].initializeMove(); 
-	player[2].initializeMove(); 
+	
+	player[2].initializeMove(schiebeGameGUI); 
+	schiebeGameGUI.setVisible(true);
+	player[2].initializeMove(schiebeGameGUI); 
+	schiebeGameGUI.setVisible(true);
 	player[2].endTurn();
 
 		}
