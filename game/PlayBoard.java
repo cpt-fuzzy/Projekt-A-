@@ -20,18 +20,18 @@ public class PlayBoard {
 			{
 				if((i ==(byte) 0 || i == base+(byte)1)&&(j ==(byte) 0 || j == base+(byte)1))
 				{
-					FieldUnit notPlayableField = new FieldUnit(i, j, false, schiebeGameGUI);
+					FieldUnit notPlayableField = new FieldUnit(i, j, schiebeGameGUI);
 					playField[i][j] = notPlayableField;
 				}
 				else if ((i <= (byte)1 && i >= base )&&(j<= (byte)1 && i >= base)) 
 				{
-					FieldUnit mainField = new FieldUnit(i,j, true, schiebeGameGUI);
+					FieldUnit mainField = new FieldUnit(i,j, schiebeGameGUI);
 					playField[i][j] = mainField;
                                 }
 
 				else 
 				{
-					FieldUnit borderField = new FieldUnit (i,j,false, schiebeGameGUI);
+					FieldUnit borderField = new FieldUnit (i,j, schiebeGameGUI);
 					playField[i][j] = borderField;
 				}
 				System.out.println("go");
