@@ -6,13 +6,11 @@ public class FieldUnit {
 	
 	private byte x;
 	private byte y;
-	private boolean hasTokenOnIt;
 	public Token token;
 	
-	FieldUnit(byte x, byte y, boolean hasTokenOnIt,SchiebeGameGUI schiebeGameGUI) {
+	FieldUnit(byte x, byte y,SchiebeGameGUI schiebeGameGUI) {
 		this.x = x;
 		this.y = y;
-		this.hasTokenOnIt = hasTokenOnIt;
 		schiebeGameGUI.setUpField(x,y);
 	}
 	
@@ -26,10 +24,6 @@ public class FieldUnit {
         
         public boolean getHasTokenOnIt() 
         {
-            return hasTokenOnIt;
+            return (!(token == null));
         }
-        public void setHasTokenOnIt(boolean hasTokenOnIt) 
-	{
-    		this.hasTokenOnIt = hasTokenOnIt;
-    	}
 }
