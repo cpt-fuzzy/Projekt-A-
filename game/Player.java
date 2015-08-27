@@ -25,7 +25,7 @@ public class Player {
 			System.out.print("Direction?[-1 = up, 1 = down] ");
 			byte vectorY = scanner.nextByte();
 			byte vectorX = 0;
-			if (vectorX == 1)
+			if (vectorY == 1)
 				{
 				for (byte i = determineStartpointYPos(whichAxis); i >= 0; i--) 
 				{
@@ -69,7 +69,7 @@ public class Player {
 				}
 		
 			}	
-			else if (vectorY ==-1) 
+			else if (vectorX ==-1) 
 			{
 				for (byte i = determineStartpointXNeg(whichAxis); i <= Game.playBoard.getBase()+1; i++)
 				{
