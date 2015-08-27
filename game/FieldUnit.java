@@ -7,6 +7,7 @@ public class FieldUnit {
 	private byte x;
 	private byte y;
 	private boolean hasTokenOnIt;
+	public Token token;
 	
 	FieldUnit(byte x, byte y, boolean hasTokenOnIt,SchiebeGameGUI schiebeGameGUI) {
 		this.x = x;
