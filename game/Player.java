@@ -18,48 +18,52 @@ public class Player {
 	
 	public void initializeMove (SchiebeGameGUI schiebeGameGUI) {
 		System.out.print(name + ":\n Move X-Axis or Y-Axis?[x,y] ");
-		String choice = scanner.next();
-		if (choice.equalsIgnoreCase("y")) {
+		char axis = scanner.next().charAt(0);
+		if (axis == 'y') {
 			System.out.print("Which one?[1-5] ");
-			byte xAxis = scanner.nextByte();
+			byte whichAxis = scanner.nextByte();
 			System.out.print("Direction?[-1 = up, 1 = down] ");
-			byte vectorX = scanner.nextByte();
-			byte vectorY = 0;
+			byte vectorY = scanner.nextByte();
+			byte vectorX = 0;
 			if (vectorX == 1)
 				{
-				for (byte i = (byte)(Game.playBoard.getBase()+1); i >= 0; i--) 
+				for (byte i = determineStartpointYPos(whichAxis); i >= 0; i--) 
 				{
 				
-					if(Game.playBoard.playField[i][xAxis].getHasTokenOnIt())
+					if(Game.playBoard.playField[i][whichAxis].getHasTokenOnIt())
 					{
-						Game.playBoard.playField[i][xAxis].token.moveTokenTowards(vectorX, vectorY, schiebeGameGUI);
+						Game.playBoard.playField[i][whichAxis].token.moveTokenTowards(vectorY, vectorX, schiebeGameGUI);
+						if (!Game.playBoard.playField[i-1][whichAxis].getHasTokenOnIt())
+							break;
 					}
 				}
 			}	
-			else if (vectorX ==-1) 
+			else if (vectorY ==-1) 
 				{
-					for (byte i = 0; i <= Game.playBoard.getBase()+1; i++) 
+					for (byte i = determineStartpointYNeg(whichAxis); i <= Game.playBoard.getBase()+1; i++) 
 					{
-						if(Game.playBoard.playField[i][xAxis].getHasTokenOnIt()) 
+						if(Game.playBoard.playField[i][whichAxis].getHasTokenOnIt()) 
 						{
-							Game.playBoard.playField[i][xAxis].token.moveTokenTowards(vectorX, vectorY, schiebeGameGUI);
+							Game.playBoard.playField[i][whichAxis].token.moveTokenTowards(vectorY, vectorX, schiebeGameGUI);
+							if (!Game.playBoard.playField[i+1][whichAxis].getHasTokenOnIt())
+								break;
 						}
 					}				
 				}
 
 			}
-		else if (choice.equalsIgnoreCase("x")) {
+		else if (axis=='x') {
 			System.out.print("Which one?[1-5] ");
-			byte yAxis = scanner.nextByte();
+			byte whichAxis = scanner.nextByte();
 			System.out.print("Direction? [-1 = left, 1 = right] ");
-			byte vectorY= scanner.nextByte();
-			byte vectorX = 0;
-			if (vectorY == 1)
+			byte vectorX= scanner.nextByte();
+			byte vectorY = 0;
+			if (vectorX == 1)
 			{
-				for (byte i = (byte)(Game.playBoard.getBase()+1); i >= 0; i--) {
+				for (byte i = determineStartpointXPos(whichAxis); i >= 0; i--) {
 				
-					if(Game.playBoard.playField[yAxis][i].getHasTokenOnIt()) {
-						Game.playBoard.playField[yAxis][i].token.moveTokenTowards(vectorX, vectorY, schiebeGameGUI);
+					if(Game.playBoard.playField[whichAxis][i].getHasTokenOnIt()) {
+						Game.playBoard.playField[whichAxis][i].token.moveTokenTowards(vectorY, vectorX, schiebeGameGUI);
 					
 					}
 				}
@@ -67,13 +71,14 @@ public class Player {
 			}	
 			else if (vectorY ==-1) 
 			{
-				for (byte i = 0; i <= Game.playBoard.getBase()+1; i++)
+				for (byte i = determineStartpointXNeg(whichAxis); i <= Game.playBoard.getBase()+1; i++)
 				{
 				
-					if(Game.playBoard.playField[yAxis][i].getHasTokenOnIt())
+					if(Game.playBoard.playField[whichAxis][i].getHasTokenOnIt())
 					{
-						Game.playBoard.playField[yAxis][i].token.moveTokenTowards(vectorX, vectorY, schiebeGameGUI);
-					
+						Game.playBoard.playField[whichAxis][i].token.moveTokenTowards(vectorY, vectorX, schiebeGameGUI);
+						if (!Game.playBoard.playField[whichAxis][i+1].getHasTokenOnIt())
+							break;
 					}
 				}				
 			}	
@@ -94,5 +99,57 @@ public class Player {
 	
 	public String getName() {
 		return name;
+	}
+	private byte determineStartpointXNeg(byte whichAxis)
+	{
+		byte startMovingAt = (byte)(Game.playBoard.getBase()+1);
+		while (startMovingAt >= 0)
+		{
+			if ( Game.playBoard.playField[whichAxis][startMovingAt].getHasTokenOnIt() == true && Game.playBoard.playField[whichAxis][startMovingAt-1].getHasTokenOnIt() == false)
+			{
+				break;
+			}
+			startMovingAt--; 
+		}
+		return startMovingAt;
+	}
+	private byte determineStartpointXPos(byte whichAxis)
+	{
+		byte startMovingAt = 0;
+		while (startMovingAt <= Game.playBoard.getBase()+1)
+		{
+			if ( Game.playBoard.playField[whichAxis][startMovingAt].getHasTokenOnIt() == true && Game.playBoard.playField[whichAxis][startMovingAt+1].getHasTokenOnIt() == false)
+			{
+				break;
+			}
+			startMovingAt++; 
+		}
+		return startMovingAt;
+	}
+	private byte determineStartpointYPos(byte whichAxis)
+	{
+		byte startMovingAt = 0;
+		while (startMovingAt <= Game.playBoard.getBase()+1)
+		{
+			if ( Game.playBoard.playField[startMovingAt][whichAxis].getHasTokenOnIt() == true && Game.playBoard.playField[startMovingAt+1][whichAxis].getHasTokenOnIt() == false)
+			{
+				break;
+			}
+			startMovingAt++; 
+		}
+		return startMovingAt;
+	}
+	private byte determineStartpointYNeg(byte whichAxis)
+	{
+		byte startMovingAt = (byte) (Game.playBoard.getBase()+1);
+		while (startMovingAt >= 0)
+		{
+			if ( Game.playBoard.playField[startMovingAt][whichAxis].getHasTokenOnIt() == true && Game.playBoard.playField[startMovingAt-1][whichAxis].getHasTokenOnIt() == false)
+			{
+				break;
+			}
+			startMovingAt--; 
+		}
+		return startMovingAt;
 	}
 }
