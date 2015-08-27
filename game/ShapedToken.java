@@ -23,7 +23,7 @@ public abstract class ShapedToken extends Token {
 
 		else return true;
 	*/
-	public Player getAffinity() {
+	@Override	public Player getAffinity() {
 		return affinity;
 	}
 }
