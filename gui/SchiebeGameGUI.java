@@ -57,7 +57,7 @@ public class SchiebeGameGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_InputActionPerformed
     
     public void setButton(byte x, byte y,  Token token) {
-        jButtons[x][y].setText(token.getClass().getName().substring(5));
+        jButtons[x][y].setText(token.getClass().getName().substring(5) +  + token.getAffinity().getName().substring(6));
     }
     
     public void setButtonEmpty(byte x, byte y) {
