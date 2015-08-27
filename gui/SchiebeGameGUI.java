@@ -59,6 +59,10 @@ public class SchiebeGameGUI extends javax.swing.JFrame {
     public void setButton(byte x, byte y,  Token token) {
         jButtons[x][y].setText(token.getClass().getName().substring(5));
     }
+    
+    public void setButtonEmpty(byte x, byte y) {
+        jButtons[x][y].setText("");
+    }
 
 
     private javax.swing.JButton[][]jButtons;
