@@ -78,3 +78,4 @@ public abstract class Token {
 	public Player getAffinity() {
 		return Game.player[0];
 }
+}
