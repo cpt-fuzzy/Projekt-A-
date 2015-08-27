@@ -5,7 +5,7 @@ import gui.SchiebeGameGUI;
 
 public class Game {
 	
-	static Token tokens[][]	={{null,null,null,null,null,null,null,null,null,null, null},
+	static Token tokens[][]	={{null,null,null,null,null,null,null,null,null,null,null},
 	{null,null,null,null,null,null,null},{null,null,null,null,null,null,null}}; 
 	static PlayBoard playBoard = new PlayBoard((byte)5);
 	static Player player[] = {new Player("Neutral"),new Player("Player1"), new Player("Player2")};  			
@@ -26,31 +26,13 @@ public class Game {
 	public static void run(SchiebeGameGUI schiebeGameGUI) {
 	playBoard.generateField(schiebeGameGUI);
 	generateToken();
-	tokens[0][0].setXandY(schiebeGameGUI);
-	tokens[0][1].setXandY(schiebeGameGUI);
-	tokens[0][2].setXandY(schiebeGameGUI);
-	tokens[0][3].setXandY(schiebeGameGUI);
-	tokens[0][4].setXandY(schiebeGameGUI);
-	tokens[0][5].setXandY(schiebeGameGUI);
-	tokens[0][6].setXandY(schiebeGameGUI);
-	tokens[0][7].setXandY(schiebeGameGUI);
-	tokens[0][8].setXandY(schiebeGameGUI);
-	tokens[0][9].setXandY(schiebeGameGUI);
-	tokens[0][10].setXandY(schiebeGameGUI);
-	tokens[1][0].setXandY(schiebeGameGUI);
-	tokens[1][1].setXandY(schiebeGameGUI);
-	tokens[1][2].setXandY(schiebeGameGUI);
-	tokens[1][3].setXandY(schiebeGameGUI);
-	tokens[1][4].setXandY(schiebeGameGUI);
-	tokens[1][5].setXandY(schiebeGameGUI);
-	tokens[1][6].setXandY(schiebeGameGUI);
-	tokens[2][0].setXandY(schiebeGameGUI);
-	tokens[2][1].setXandY(schiebeGameGUI);
-	tokens[2][2].setXandY(schiebeGameGUI);
-	tokens[2][3].setXandY(schiebeGameGUI);
-	tokens[2][4].setXandY(schiebeGameGUI);
-	tokens[2][5].setXandY(schiebeGameGUI);
-	tokens[2][6].setXandY(schiebeGameGUI);
+	for (byte i = 0; i<tokens.length; i++)
+	{
+		for (byte j = 0; j<tokens[i].length; j++) 
+		{
+			tokens[i][j].setXandY(schiebeGameGUI);
+		}
+	}	
 	
 	/*for(Token[] token:tokens )
 	{
