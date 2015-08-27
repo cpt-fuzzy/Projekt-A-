@@ -21,12 +21,10 @@ public abstract class Token {
 	}
 	
 	protected abstract boolean moveAllowed (byte vectorX, byte vectorY);
-	protected abstract Player getAffinity();
 	
 	public void moveTokenTowards (byte vectorX, byte vectorY, SchiebeGameGUI schiebeGameGUI) {
 		if (moveAllowed(vectorX,vectorY) && inGame == true){
 			Game.playBoard.playField[x][y].token = null;
-			Game.playBoard.playField[x][y].setHasTokenOnIt(false);
 			schiebeGameGUI.setButtonEmpty(x,y);
 			this.x += vectorX;
 			this.y += vectorY;
@@ -37,7 +35,6 @@ public abstract class Token {
 			else 
 			{
 				Game.playBoard.playField[x][y].token = this;
-				Game.playBoard.playField[x][y].setHasTokenOnIt(true);
 				schiebeGameGUI.setButton(x,y, this);
 			}
 				
@@ -64,10 +61,8 @@ public abstract class Token {
 			if (Game.playBoard.playField[randomX][randomY].getHasTokenOnIt() == false) {
 				x = randomX;
 				y = randomY;
-				Game.playBoard.playField[x][y].token = this ;
-				Game.playBoard.playField[x][y].setHasTokenOnIt(true);
+				Game.playBoard.playField[x][y].token = this;
 				schiebeGameGUI.setButton(x,y,this);
-				inGame = true;
 				break;
 			}
 		}
@@ -80,6 +75,6 @@ public abstract class Token {
 	boolean getInGame() {
 		return inGame;
 	}
-
-	
+	public Player getAffinity() {
+		return Game.player[0];
 }
