@@ -3,6 +3,7 @@ package game;
 public class NeutralToken extends Token {
 	NeutralToken(int points,boolean isVisible) {
 		super(points, isVisible);
+		affinity = Game.player[0];
 	}
 	
 	protected boolean moveAllowed (byte vectorX, byte vectorY) {
@@ -21,7 +22,4 @@ public class NeutralToken extends Token {
 
 		else return true;
 		}
-	public Player getAffinity() {
-		return Game.player[0];
-	}
 	}
