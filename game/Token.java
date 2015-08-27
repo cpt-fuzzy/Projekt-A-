@@ -25,16 +25,25 @@ public abstract class Token {
 	
 	public void moveTokenTowards (byte vectorX, byte vectorY, SchiebeGameGUI schiebeGameGUI) {
 		if (moveAllowed(vectorX,vectorY) && inGame == true){
+			Game.playBoard.playField[x][y].token = null;
+			Game.playBoard.playField[x][y].setHasTokenOnIt(false);
+			schiebeGameGUI.setButtonEmpty(x,y);
 			this.x += vectorX;
 			this.y += vectorY;
 			if (this.x < (byte)0 || this.y <(byte)0 || this.x > Game.playBoard.getBase() +2 ||  this.y > Game.playBoard.getBase() + 2  ) {
 				Game.playBoard.getTokenOn((byte)(x-vectorX),(byte)(y-vectorY)).getAffinity().addScore(points);
 				inGame = false;
 			}
+			else 
+			{
+				Game.playBoard.playField[x][y].token = this;
+				Game.playBoard.playField[x][y].setHasTokenOnIt(true);
+				schiebeGameGUI.setButton(x,y, this);
+			}
 				
-		schiebeGameGUI.setButton(x,y, this);	
 		}
-		else{
+		else
+		{
 			System.out.print("Move not allowed");
 		}
 	}
@@ -55,8 +64,10 @@ public abstract class Token {
 			if (Game.playBoard.playField[randomX][randomY].getHasTokenOnIt() == false) {
 				x = randomX;
 				y = randomY;
-				schiebeGameGUI.setButton(x,y,this);
+				Game.playBoard.playField[x][y].token = this ;
 				Game.playBoard.playField[x][y].setHasTokenOnIt(true);
+				schiebeGameGUI.setButton(x,y,this);
+				inGame = true;
 				break;
 			}
 		}
