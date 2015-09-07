@@ -1,7 +1,7 @@
 import game.Game;
 import gui.SchiebeGameGUI;
 
-public class main {
+public class Main {
     public static void main(String args[]) {
     	
         try {
