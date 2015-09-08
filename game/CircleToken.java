@@ -8,16 +8,24 @@ public class CircleToken extends ShapedToken {
 	protected boolean moveAllowed (byte vectorX, byte vectorY) {
 			
 		if	(Game.playBoard.emptyFieldFrom(x, y, vectorX, vectorY))
-			return true;
-		
+			{
+				return true;
+			}
 		else if	((vectorX == 1 && x == Game.playBoard.getBase()+1)||
 		 	  (vectorX == -1 && x == 0)||
 			   (vectorY == 1 && y == Game.playBoard.getBase()+1)||
-			    (vectorY == -1&& y == 0)) 
-			if(!(Game.playBoard.getTokenOn((byte)(x-vectorX),(byte)(y-vectorY)) instanceof CircleToken)||
-				this.affinity.equals(Game.playBoard.getTokenOn((byte)(x-vectorX),(byte)(y-vectorY)).getAffinity()))
-				return false;
-			else return true;
+			    (vectorY == -1&& y == 0))
+			    {
+			    if((Game.playBoard.getTokenOn((byte)(x-vectorX),(byte)(y-vectorY)) instanceof CircleToken||
+				Game.playBoard.getTokenOn((byte)(x-vectorX),(byte)(y-vectorY)) instanceof StarToken)&&
+				!(this.affinity.equals(Game.playBoard.getTokenOn((byte)(x-vectorX),(byte)(y-vectorY)).getAffinity())))
+				return true;
+			else 
+			{
+				throw new Exception();
+			}	
+		}
+			
 			
 
 		else return true;
