@@ -43,7 +43,7 @@ public class Game {
 	}*/
 	
 	schiebeGameGUI.setVisible(true);
-	
+/*	
 	while(true) { 
 	player[1].initializeMove(schiebeGameGUI); 
 	schiebeGameGUI.setVisible(true);
@@ -58,6 +58,7 @@ public class Game {
 	player[2].endTurn();
 
 		}
+		*/
 	}
 	public static void generateToken() {
 		for(byte z = 0;z<=2;z++){
