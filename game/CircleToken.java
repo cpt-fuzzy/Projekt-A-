@@ -5,7 +5,7 @@ public class CircleToken extends ShapedToken {
 	public CircleToken(int points, boolean isVisible, Player affinity) {
 		super(points,  isVisible,  affinity);
 	}
-	protected boolean moveAllowed (byte vectorX, byte vectorY) {
+	protected boolean moveAllowed (byte vectorX, byte vectorY) throws Exception {
 			
 		if	(Game.playBoard.emptyFieldFrom(x, y, vectorX, vectorY))
 			{
@@ -15,7 +15,7 @@ public class CircleToken extends ShapedToken {
 		 	  (vectorX == -1 && x == 0)||
 			   (vectorY == 1 && y == Game.playBoard.getBase()+1)||
 			    (vectorY == -1&& y == 0))
-			    {
+		{
 			    if((Game.playBoard.getTokenOn((byte)(x-vectorX),(byte)(y-vectorY)) instanceof CircleToken||
 				Game.playBoard.getTokenOn((byte)(x-vectorX),(byte)(y-vectorY)) instanceof StarToken)&&
 				!(this.affinity.equals(Game.playBoard.getTokenOn((byte)(x-vectorX),(byte)(y-vectorY)).getAffinity())))
