@@ -43,7 +43,7 @@ public class PlayBoard {
 	{
 		while(x <= base+(byte)1 && x>=(byte) 0 && y <= base+(byte)1 && y>= (byte) 0)
 		{
-			if(playField[x][y].getHasTokenOnIt()) return true;
+			if(!playField[x][y].getHasTokenOnIt()) return true;
 			x+=vectorX;
 			y+=vectorY; 
 		}
