@@ -8,7 +8,7 @@ public abstract class ShapedToken extends Token {
 		this.affinity = affinity;
 	}
 	
-	protected abstract boolean moveAllowed(byte vectorX, byte vectorY);
+	protected abstract boolean moveAllowed(byte vectorX, byte vectorY) throws Exception;
 		
 	/*	if (playboard.emptyFieldFrom(x, y, vectorX, vectorY))
 			return true;
