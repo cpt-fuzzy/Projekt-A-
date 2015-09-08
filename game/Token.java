@@ -22,7 +22,7 @@ public abstract class Token {
 	
 	protected abstract boolean moveAllowed (byte vectorX, byte vectorY) throws Exception;
 	
-	public void moveTokenTowards (byte vectorX, byte vectorY, SchiebeGameGUI schiebeGameGUI) {
+	public void moveTokenTowards (byte vectorX, byte vectorY, SchiebeGameGUI schiebeGameGUI) throws Exception {
 		if (moveAllowed(vectorX,vectorY) && inGame == true)
 		{
 			Game.playBoard.playField[x][y].token = null;
