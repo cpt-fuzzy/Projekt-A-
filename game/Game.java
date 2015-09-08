@@ -7,8 +7,8 @@ public class Game {
 	
 	static Token tokens[][]	={{null,null,null,null,null,null,null,null,null,null,null},
 	{null,null,null,null,null,null,null},{null,null,null,null,null,null,null}}; 
-	static PlayBoard playBoard = new PlayBoard((byte)5);
-	static Player player[] = {new Player("Neutral"),new Player("Player1"), new Player("Player2")};  			
+	public	static PlayBoard playBoard = new PlayBoard((byte)5);
+	public static Player player[] = {new Player("Neutral"),new Player("Player1"), new Player("Player2")};  			
 	Random rn = new Random();			
 						
 	/*public void determineTurnStart() {
