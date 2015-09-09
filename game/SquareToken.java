@@ -22,7 +22,7 @@ public class SquareToken extends ShapedToken {
 				return true;
 			else 
 			{
-				throw new Exception();
+				throw new Exception("Not a viable Move to kick out SquareToken\n");
 			}
 		}	
 
