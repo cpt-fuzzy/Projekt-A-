@@ -10,13 +10,13 @@ public abstract class Token {
 	protected boolean isVisible;
 	protected boolean inGame;
 	protected Player affinity;
-	
-	Random random = new Random();
+	private Random random;
 	
 	Token(int points,boolean isVisible)
 	{
 		this.points = points;
 		this.isVisible = isVisible;
+		random = new Random();
 		inGame = true;
 	}
 	
@@ -30,9 +30,9 @@ public abstract class Token {
 			this.x += vectorX;
 			this.y += vectorY;
 		}
-			if (this.x < (byte)0 || this.y <(byte)0 || this.x > Game.playBoard.getBase() +2 ||  this.y > Game.playBoard.getBase() + 2  ) 
+			if (this.x < (byte)0 || this.y <(byte)0 || this.x > Game.playBoard.getBase() +1 ||  this.y > Game.playBoard.getBase() + 1  ) 
 			{
-				Game.playBoard.getTokenOn((byte)(x-vectorX),(byte)(y-vectorY)).getAffinity().addScore(points);
+				//Game.playBoard.getTokenOn((byte)(x-vectorX),(byte)(y-vectorY)).getAffinity().addScore(points);
 				inGame = false;
 			}
 			else 
@@ -54,8 +54,8 @@ public abstract class Token {
 	
 	public void setXandY(SchiebeGameGUI schiebeGameGUI) {
 		while (true){
-			byte randomX = (byte) (random.nextInt(5)+1);
-			byte randomY = (byte) (random.nextInt(5)+1);
+			byte randomX = (byte) (random.nextInt(Game.playBoard.getBase())+1);
+			byte randomY = (byte) (random.nextInt(Game.playBoard.getBase())+1);
 			if (Game.playBoard.playField[randomX][randomY].getHasTokenOnIt() == false) {
 				x = randomX;
 				y = randomY;
@@ -75,5 +75,5 @@ public abstract class Token {
 	}
 	public Player getAffinity() {
 		return Game.player[0];
-}
+	}
 }
