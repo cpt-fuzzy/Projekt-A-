@@ -20,12 +20,12 @@ public class TriangleToken extends ShapedToken {
 				Game.playBoard.getTokenOn((byte)(x-vectorX),(byte)(y-vectorY)) instanceof StarToken)&&
 					!(this.affinity.equals(Game.playBoard.getTokenOn((byte)(x-vectorX),(byte)(y-vectorY)).getAffinity())))
 			{
-			return true;
+				return true;
 			}
 			
 			else 
 			{
-				throw new Exception();
+				throw new Exception("Not a viable Move to kick out TriangleToken\n");
 			}
 		}
 		
