@@ -18,10 +18,13 @@ public class StarToken extends ShapedToken {
 		{
 			if(Game.playBoard.getTokenOn((byte)(x-vectorX),(byte)(y-vectorY)) instanceof ShapedToken&&
 				!(this.affinity.equals(Game.playBoard.getTokenOn((byte)(x-vectorX),(byte)(y-vectorY)).getAffinity())))
+			{
 				return true;
+			}
+			
 			else 
 			{
-				throw new Exception();
+				throw new Exception("Not a viable Move to kick out StarToken\n");
 			}
 		}	
 
