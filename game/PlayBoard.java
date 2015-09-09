@@ -14,27 +14,26 @@ public class PlayBoard {
 	}
 
 	public void generateField(SchiebeGameGUI schiebeGameGUI) {
-		for (byte i = (byte)0; i< playField.length; i++) 
+		for (byte x = (byte)0; x< playField.length; x++) 
 		{
-			for(byte j = (byte) 0;j<playField[i].length; j++)
+			for(byte y = (byte) 0;y<playField[x].length; y++)
 			{
-				if((i ==(byte) 0 || i == base+(byte)1)&&(j ==(byte) 0 || j == base+(byte)1))
+				if((x ==(byte) 0 || x == base+(byte)1)&&(y ==(byte) 0 || y == base+(byte)1))
 				{
-					FieldUnit notPlayableField = new FieldUnit(i, j, schiebeGameGUI);
-					playField[i][j] = notPlayableField;
+					FieldUnit notPlayableField = new FieldUnit(x, y, schiebeGameGUI);
+					playField[x][y] = notPlayableField;
 				}
-				else if ((i <= (byte)1 && i >= base )&&(j<= (byte)1 && i >= base)) 
+				else if ((x <= (byte)1 && x >= base )&&(y<= (byte)1 && y >= base)) 
 				{
-					FieldUnit mainField = new FieldUnit(i,j, schiebeGameGUI);
-					playField[i][j] = mainField;
+					FieldUnit mainField = new FieldUnit(x,y, schiebeGameGUI);
+					playField[x][y] = mainField;
                                 }
 
 				else 
 				{
-					FieldUnit borderField = new FieldUnit (i,j, schiebeGameGUI);
-					playField[i][j] = borderField;
+					FieldUnit borderField = new FieldUnit (x,y, schiebeGameGUI);
+					playField[x][y] = borderField;
 				}
-				System.out.println("go");
 			}
 		}
 	}
@@ -63,7 +62,7 @@ public class PlayBoard {
 	
 	public Token getTokenOn(byte x, byte y)
 	{
-		return Game.tokens[x][y];
+		return playField[x][y].token;
 	}
 }
 
