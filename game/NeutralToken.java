@@ -23,7 +23,7 @@ public class NeutralToken extends Token {
 			
 			else 
 			{
-				throw new Exception();
+				throw new Exception("Not a viable Move to kick out NeutralToken\n");
 			}
 			
 		}
