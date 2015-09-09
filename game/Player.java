@@ -32,7 +32,7 @@ public class Player {
 						break;	
 				}
 				catch ( Exception moveNotAllowed) {
-					System.out.print("Move not Allowed");
+					moveNotAllowed.printsStack();
 					break;
 				}
 			}
